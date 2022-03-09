@@ -14,5 +14,3 @@ for i in range(number):
     print(it)
     # print(combinations(range(1, n), m))
 # 콤비네이션으로 하면 더 느림
-
-# print(math.factorial(29) / math.factorial(13) * math.factorial(16))
