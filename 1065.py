@@ -24,4 +24,4 @@ print(count)
 # b = (i % 100) // 10
 # c = (i % 10)
 
-print(a, b, c)
+# print(a, b, c)
