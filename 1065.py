@@ -1,3 +1,4 @@
+# silver 4
 n = int(input())
 
 count = 0
