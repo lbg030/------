@@ -1,5 +1,20 @@
-from sys import stdin
+n, m = map(int, input().split())
 
-n = int(map(int, stdin.readlines()).rstrip())
+li = []
+for i in range(n):
+    li.append(int(input()))
 
-print(n)
+start, end = 1, max(li)
+
+while start <= end:
+    mid = (start+end) // 2
+    count = 0
+    for x in li:
+        count += x // mid
+
+    if(count >= m):
+        start = mid + 1
+    else:
+        end = mid - 1
+
+print(end)
