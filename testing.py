@@ -1,4 +1,4 @@
-print(int(True))
-li = [6, 12, 4, 5]
+import math
 
-print(li//4)
+print(bool(math.sqrt(15).is_integer()))
+# print(math.sqrt(15).is_integer())

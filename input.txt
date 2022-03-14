@@ -1,19 +1,15 @@
-18
-babic
-keksic
-boric
-bukic
-sarmic
-balic
-kruzic
-hrenovkic
-beslic
-boksic
-krafnic
-pecivic
-klavirkovic
-kukumaric
-sunkic
-kolacic
-kovacic
-prijestolonasljednikovi
+10 4
+75
+30
+100
+38
+50
+51
+52
+20
+81
+5
+1 10
+3 5
+6 9
+8 10
