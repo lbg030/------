@@ -1,7 +1,2 @@
-from sys import stdin
-
-n = list(input())
-m = int(input())
-command = stdin.readline().split()
-
-print(command)
+# print(316 ** 2 + 11*2 + 4**2 + 2**2 + 2)
+print(99999 ** 0.5)
