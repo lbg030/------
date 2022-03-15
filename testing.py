@@ -1,4 +1,7 @@
-import math
+from sys import stdin
 
-print(bool(math.sqrt(15).is_integer()))
-# print(math.sqrt(15).is_integer())
+n = list(input())
+m = int(input())
+command = stdin.readline().split()
+
+print(command)
