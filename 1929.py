@@ -12,4 +12,9 @@ for i in range(2, m+1):
         for j in range(2*i, m+1, i):
             a[j] = False
 
-print(primes)
+for j in range(n):
+    if(primes[j] >= n):
+        break
+
+for x in primes[j:]:
+    print(x)
