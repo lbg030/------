@@ -1,2 +1,4 @@
-# print(316 ** 2 + 11*2 + 4**2 + 2**2 + 2)
-print(99999 ** 0.5)
+from math import gcd
+
+
+print(gcd(7, 4))
