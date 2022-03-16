@@ -15,8 +15,8 @@ def dfs(v):
             dfs(i)
 
 
-print(f"s= {s}")
-print(f"visit = {visit}")
+# print(f"s= {s}")
+# print(f"visit = {visit}")
 dfs(0)
 cnt = 0
 for i in range(1, n):
