@@ -1,7 +1,8 @@
+from sys import stdout, stdin
 n = int(input())
-li = set()
+li = []
 for _ in range(n):
-    li.add(int(input()))
+    li.append(int(stdin.readline()))
 
-for x in li:
-    print(x)
+for x in sorted(li):
+    stdout.write(str(x) + '\n')
