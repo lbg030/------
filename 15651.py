@@ -1,10 +1,13 @@
-from itertools import permutations
+from itertools import product
 
 n, m = map(int, input().split())
 
-li = [x for x in range(1, n+1)]
+for i in product([x for x in range(1, n+1)], repeat=m):
+    print(*i)
+    # li = []
 
-li2 = permutations(li, m)
+    # for _ in range(m):
+    #     li.append(x for x in range(1, n))
 
-for x in li2:
-    print(*x)
+    # for x in li:
+    #     print(x)
