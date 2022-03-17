@@ -9,10 +9,6 @@ for i in range(M):
 
     graph[m1][m2] = graph[m2][m1] = 1
 
- # bfs = 너비 우선 탐색
-
-# print(graph)
-
 
 def bfs(start_v):
     discovered = [start_v]
@@ -21,7 +17,7 @@ def bfs(start_v):
     queue.append(start_v)
 
     while queue:
-        # print(f"queue = {queue}")
+
         v = queue.popleft()
         print(v, end=' ')
 
@@ -32,8 +28,7 @@ def bfs(start_v):
 
 
 def dfs(start_v, discovered=[]):
-    # print(f" discovered = {discovered}")
-    # print(f"graph = {graph}")
+
     discovered.append(start_v)
     print(start_v, end=' ')
 
