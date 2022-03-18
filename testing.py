@@ -1,3 +1,16 @@
-li = [1, [1, 2], [1, 5]]
+from collections import deque
 
-print(''.join(li))
+a = deque()
+m = "push 1"
+
+a.append([1])
+a.append(m)
+a.append('a')
+a.append('c')
+a.append('es')
+a.append('b')
+a.append('a')
+a.append('b')
+a.pop()
+
+print(a)
