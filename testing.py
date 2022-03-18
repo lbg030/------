@@ -1,6 +1,5 @@
-n = int(input())
+li = [1, 1, 1]
 
-test, max_x, max_y = map(int, input().split())
-li = [[0] * (max_x+1) for _ in range((max_y) + 1)]
-
-print(li)
+for i in range(3, 7):
+    li.append(li[i-3] + li[i-2])
+    print(li)
