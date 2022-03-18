@@ -1,16 +1,6 @@
-from collections import deque
+n = int(input())
 
-a = deque()
-m = "push 1"
+test, max_x, max_y = map(int, input().split())
+li = [[0] * (max_x+1) for _ in range((max_y) + 1)]
 
-a.append([1])
-a.append(m)
-a.append('a')
-a.append('c')
-a.append('es')
-a.append('b')
-a.append('a')
-a.append('b')
-a.pop()
-
-print(a)
+print(li)
