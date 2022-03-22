@@ -20,3 +20,4 @@ while i**2 <= maxNum:
     i += 1
 
 print(cnt)
+print(eratos)
