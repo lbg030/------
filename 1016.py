@@ -1,26 +1,22 @@
-minimum, maximum = map(int, input().split())
+# 1016번 제곱 ㄴㄴ수
 
-a = [False, False] + [True]*(maximum-1)
-primes = []
+# main
+minNum, maxNum = map(int, input().split())
 
-for i in range(2, maximum+1):
-    if a[i]:
-        primes.append(i)
-        for j in range(2*i, maximum+1, i):
-            a[j] = False
+eratos = [False for _ in range(maxNum-minNum+2)]
 
-# print(primes)
-cnt = 0
-for i in range(minimum, maximum+1):
-    testing = 0
-    for x in primes:
+cnt = maxNum - minNum + 1
+i = 2
+while i**2 <= maxNum:
+    s = minNum // (i**2)
+    if minNum % (i**2) != 0:
+        s += 1
 
-        if(i >= x**2 >= minimum):
-            # print(x**2, i)
-            if(i % (x**2) == 0):
-                # print(i)
-                testing = 1
-                break
-    if(testing == 0):
-        cnt += 1
+    while s*(i**2) <= maxNum:
+        if not eratos[s*(i**2) - minNum]:
+            eratos[s*(i**2) - minNum] = True
+            cnt -= 1
+        s += 1
+    i += 1
+
 print(cnt)
