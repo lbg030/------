@@ -10,3 +10,4 @@ for i in range(n):
             # print(dp[i])
 
 print(max(dp))
+print(dp)
