@@ -1,16 +1,19 @@
 n, m = map(int, input().split())
-li = []
 
-for _ in range(m):
-    li.append(list(map(int, input().split())))
-# print(li)
-lower = li[0][0]
-lower2 = li[0][1]
-for x in li:
-    # print(x[0])
-    lower = min(lower, x[0])
-    lower2 = min(lower2, x[1])
-if(n <= 6):
-    print(min(lower, lower2*n))
+six_package = []
+one_package = []
+
+for i in range(m):
+    six, one = map(int, input().split())
+    six_package.append(six)
+    one_package.append(one)
+
+six_min = min(six_package)
+one_min = min(one_package)
+
+if n <= 6:
+    print(min(six_min, one_min*n))
+
 else:
-    print(min(lower * (n // 6) + lower2 * (n % 6), lower * ((n // 6) + 1)))
+    print(min(min(one_min * n, six_min * (n // 6)+six_min),
+          six_min*(n//6) + one_min * (n % 6)))
