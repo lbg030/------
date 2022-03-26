@@ -11,6 +11,6 @@ for x in li:
     lower = min(lower, x[0])
     lower2 = min(lower2, x[1])
 if(n <= 6):
-    print(lower)
+    print(min(lower, lower2*n))
 else:
     print(min(lower * (n // 6) + lower2 * (n % 6), lower * ((n // 6) + 1)))
