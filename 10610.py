@@ -1,10 +1,3 @@
-from itertools import permutations
-n = list(input())
-print(n)
+from sys import stdin
 
-if('0' in n):
-    a = list(permutations(n, len(n)))
-    a = list(map(int, a))
-    print(a)
-else:
-    print("-1")
+n = list(stdin.readline())
