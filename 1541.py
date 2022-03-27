@@ -1,13 +1,16 @@
-n = list(input().split('-'))
+n = input().split('-')
+li = []
+sum = 0
 
-# print(n)
+# 0번째는 무조건 더해주기
+for x in n[0].split('+'):
+    sum += int(x)
 
-n = [ele.lstrip('0') for ele in n]
+# 나머지는 다 빼기
+# int로 받으면 00002같은걸 인식 못하지만 int('0002')= 2로 나옴
 
-print(n)
-# result = eval(n[0])
+for x in n[1:]:
+    for j in x.split('+'):
+        sum -= int(j)
 
-# for x in n:
-#     result -= eval(x)
-
-# print(result + eval(n[0]))
+print(sum)
