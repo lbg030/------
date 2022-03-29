@@ -19,6 +19,7 @@ def solution(food_times, k):
             answer = i+2  # 4~5초가 아니라 5~6초가 오류나는 거기 때문에 2를 더해야됨
 
             # 만약에 답의 인덱스가 len을 초과하게 된다면
+            # ex) 만약 [3,1,2] 에서 -> [2,0,1] 이 된다
             if(answer > len(food_times)):
                 answer = answer % (len(food_times)-1)
             break
