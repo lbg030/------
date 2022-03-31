@@ -3,6 +3,7 @@ t = []
 for i in range(n):
     t.append(list(map(int, input().split())))
 k = 2
+print(t)
 for i in range(1, n):
     for j in range(k):
         if j == 0:
@@ -12,5 +13,5 @@ for i in range(1, n):
         else:
             t[i][j] = max(t[i - 1][j - 1], t[i - 1][j]) + t[i][j]
     k += 1
-# print(t)
+print(t)
 print(max(t[n - 1]))
