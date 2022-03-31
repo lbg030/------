@@ -6,7 +6,7 @@ k = 2
 print(t)
 for i in range(1, n):
     for j in range(k):
-        print(i, j)
+        # print(i, j)
         if j == 0:
             t[i][j] = t[i][j] + t[i - 1][j]
         elif i == j:
