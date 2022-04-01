@@ -1,3 +1,5 @@
+# 브론즈 5
+
 print("NFC West       W   L  T")
 print("-----------------------")
 print("Seattle        13  3  0")
