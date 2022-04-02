@@ -1,27 +1,27 @@
-n, m = map(int, input().split())
-l = []
-mini = []
+N, M = map(int, input().split())
+original = []
+count = []
 
-for _ in range(n):
-    l.append(input())
+for _ in range(N):
+    original.append(input())
 
-for a in range(n - 7):
-    for i in range(m - 7):
-        idx1 = 0
-        idx2 = 0
-        for b in range(a, a + 8):
-            for j in range(i, i + 8):              # 8X8 범위를 B와 W로 번갈아가면서 검사
-                if (j + b) % 2 == 0:
-                    if l[b][j] != 'W':
-                        idx1 += 1
-                    if l[b][j] != 'B':
-                        idx2 += 1
+for a in range(N-7):
+    for b in range(M-7):
+        index1 = 0
+        index2 = 0
+        for i in range(a, a+8):
+            for j in range(b, b+8):
+                if (i+j) % 2 == 0:
+                    if original[i][j] != 'W':
+                        index1 += 1
+                    if original[i][j] != 'B':
+                        index2 += 1
                 else:
-                    if l[b][j] != 'B':
-                        idx1 += 1
-                    if l[b][j] != 'W':
-                        idx2 += 1
-        mini.append(idx1)                          # W로 시작했을 때 칠해야 할 부분
-        mini.append(idx2)                          # B로 시작했을 때 칠해야 할 부분
+                    if original[i][j] != 'B':
+                        index1 += 1
+                    if original[i][j] != 'W':
+                        index2 += 1
+        count.append(min(index1, index2))
 
-print(min(mini))                                   # 칠해야 하는 개수의 최소값
+print(count)
+print(min(count))
