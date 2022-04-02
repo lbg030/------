@@ -1,2 +1,7 @@
+3
+3
+M K U
 5
-2 4 -10 4 -9
+A S D F G
+7
+B A C A B A C
