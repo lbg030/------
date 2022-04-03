@@ -1,8 +1,21 @@
-n = int(input())
 
-nums_pileup = 1  # 벌집의 개수, 1개부터 시작
-cnt = 1
-while n > nums_pileup:
-    nums_pileup += 6 * cnt  # 벌집이 6의 배수로 증가
-    cnt += 1  # 반복문을 반복하는 횟수
-print(cnt)
+x = int(input())
+num_list = []
+
+num = 0
+num_count = 0
+
+while num_count < x:
+    num += 1
+    num_count += num
+
+num_count -= num
+
+if num % 2 == 0:
+    i = x - num_count
+    j = num - i + 1
+else:
+    i = num - (x - num_count) + 1
+    j = x - num_count
+
+print(f"{i}/{j}")
