@@ -1,7 +1,17 @@
-3
-3
-M K U
-5
-A S D F G
-7
-B A C A B A C
+5 11
+baekjoononlinejudge
+startlink
+codeplus
+sundaycoding
+codingsh
+baekjoon
+codeplus
+codeminus
+startlink
+starlink
+sundaycoding
+codingsh
+codinghs
+sondaycoding
+startrink
+icerink
