@@ -1,1 +1,1 @@
-print(ord('B'))
+print(min(1, 2, 3))
