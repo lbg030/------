@@ -1,2 +1,4 @@
-a = int(input('숫자를 입력하세요'))
-print('{:,}'.format(a))
+
+for i in range(1, 100):
+    if((780 + (63 * i) / 15+i) < 58):
+        print(i)
