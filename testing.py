@@ -1,1 +1,2 @@
-print(min(1, 2, 3))
+a = int(input('숫자를 입력하세요'))
+print('{:,}'.format(a))
