@@ -1,3 +1,3 @@
-from math import sqrt
-n = 26
-print(int(sqrt(n)))
+dic = {'headgear': ["sunglass", "header"]}
+
+print(dic['headgear'])
