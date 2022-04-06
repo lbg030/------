@@ -1,27 +1,21 @@
-26
-add 1
-add 2
-check 1
-check 2
-check 3
-remove 2
-check 1
-check 2
-toggle 3
-check 1
-check 2
-check 3
-check 4
-all
-check 10
-check 20
-toggle 10
-remove 20
-check 10
-check 20
-empty
-check 1
-toggle 1
-check 1
-toggle 1
-check 1
+16 4
+noj.am IU
+acmicpc.net UAENA
+startlink.io THEKINGOD
+google.com ZEZE
+nate.com VOICEMAIL
+naver.com REDQUEEN
+daum.net MODERNTIMES
+utube.com BLACKOUT
+zum.com LASTFANTASY
+dreamwiz.com RAINDROP
+hanyang.ac.kr SOMEDAY
+dhlottery.co.kr BOO
+duksoo.hs.kr HAVANA
+hanyang-u.ms.kr OBLIVIATE
+yd.es.kr LOVEATTACK
+mcc.hanyang.ac.kr ADREAMER
+startlink.io
+acmicpc.net
+noj.am
+mcc.hanyang.ac.kr
