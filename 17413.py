@@ -1,16 +1,4 @@
-stack = input()
-tempList = []
-checked = 0
-ans = []
+import sys
+word = list(sys.stdin.readline().rstrip())
 
-print(stack)
-
-for i in range(len(stack)):
-    if(stack[i] == '<'):
-        checked = 1
-
-    if(checked == 0):
-        tempList.append(stack[i])
-
-    if(checked == 1):
-        ans.append(stack[i])
+print(word)

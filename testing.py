@@ -1,2 +1,3 @@
 a = []
-print(a[-1])
+a.append('')
+print(a)
