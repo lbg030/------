@@ -8,3 +8,6 @@ print(stack)
 for i in range(len(stack)):
     if(checked == 0):
         tempList.append(stack[i])
+
+    if(checked == 1):
+        ans.append(stack[i])
