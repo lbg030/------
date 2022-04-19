@@ -6,6 +6,9 @@ ans = []
 print(stack)
 
 for i in range(len(stack)):
+    if(stack[i] == '<'):
+        checked = 1
+
     if(checked == 0):
         tempList.append(stack[i])
 
