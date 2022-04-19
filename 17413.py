@@ -4,3 +4,7 @@ checked = 0
 ans = []
 
 print(stack)
+
+for i in range(len(stack)):
+    if(checked == 0):
+        tempList.append(stack[i])
