@@ -1,8 +1,9 @@
 from sys import stdin
 
 s = list(stdin.readline().rstrip())
+
 # 정답 체크용
-correct = input()
+# correct = input()
 
 idx = 0
 
