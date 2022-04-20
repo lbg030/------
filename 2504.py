@@ -1,38 +1,22 @@
-Parentheses = []
-Brackets = []
+# 2나 3을 더한다는 개념이 아닌 무조건 2 or 3을 곱한다는 개념.
 
-inputValue = input()
-flag = True
-result = 0
-coeff = 1
+def solve(lst):
+    for i in range(len(lst)):
+        if(lst[i] == ')'):
+            if(stack[-1] != '('):
+                return 0
+            else:
+                if(len(stack) > 1):
+                    tempList.append(2)
+                    pass
 
-for i in range(len(inputValue)):
-    if inputValue[i] == '(':
-        Parentheses.append(i)
-        coeff *= 2
-    elif inputValue[i] == '[':
-        Brackets.append(i)
-        coeff *= 3
-    elif inputValue[i] == ')':
-        if Parentheses:
-            if inputValue[i-1] == '(':
-                result += coeff
-            Parentheses.pop()
-            coeff //= 2
-        else:
-            flag = False
-            break
-    else:
-        if Brackets:
-            if inputValue[i-1] == '[':
-                result += coeff
-            Brackets.pop()
-            coeff //= 3
-        else:
-            flag = False
-            break
+        elif(lst[i] == ']'):
+            if(stack[-1] != '['):
+                return 0
+            else:
 
-if not Parentheses and not Brackets and flag:
-    print(result)
-else:
-    print(0)
+
+lst = list(input())
+stack = []
+tempList = []
+value = 1
