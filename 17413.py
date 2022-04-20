@@ -31,14 +31,9 @@ for i in range(len(s)):
             temp = ''
         else:
             temp += s[i]
-    # print(ans)
+
 ans += temp[::-1]
-# print(ans)
-# print(temp)
 print(ans)
-# ans += temp[::-1]
-# ans = ans[:-1]
-# print(ans)
 
 
 # for i in range(len(ans)):
