@@ -1,33 +1,48 @@
 from sys import stdin
 
-s = list(stdin.readline())
+s = list(stdin.readline().rstrip())
+# 정답 체크용
+correct = input()
 
-print(s)
-# res = ""
-# word = ""
-# reverse = True
+idx = 0
 
-# for c in s:
+ans = ''
+temp = ''
+checked = 0
+# print(s)
+for i in range(len(s)):
+    if(s[i] == '<'):
+        idx = i
+        checked = 1
+        ans += temp[::-1]
+        temp = ''
 
-#     if c == '<':
-#         reverse = False
-#         res += word
-#         word = c
+    if checked == 1:
+        if(s[i] == '>'):
+            ans += ''.join(s[idx:i+1])
+            checked = 0
+        else:
+            continue
 
-#     elif c == '>':
-#         reverse = True
-#         res += (word + '>')
-#         word = ""
+    # checked = 0일때
+    else:
+        if(s[i] == ' '):
+            ans += temp[::-1] + ' '
+            temp = ''
+        else:
+            temp += s[i]
+    # print(ans)
+ans += temp[::-1]
+# print(ans)
+# print(temp)
+print(ans)
+# ans += temp[::-1]
+# ans = ans[:-1]
+# print(ans)
 
-#     elif c == ' ':
-#         res += word + c
-#         word = ""
 
-#     elif reverse:
-#         word = c + word
+# for i in range(len(ans)):
+#     if(ans[i] != correct[i]):
+#         print(f"i = {i} and ans[i] = {ans[i]}")
 
-#     else:
-#         word += c
-
-# res += word
-# print(res)
+# print(correct == ans)
