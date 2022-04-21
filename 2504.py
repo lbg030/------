@@ -1,44 +1,33 @@
-lst = input().rstrip()
-# 2에 대한 연산 스택
-stackTwo = []
-# 3에 대한 연산 스택
-stackThree = []
-value = 1
-checked = True
-result = 0
+def solve():
+    data = input()
+    score = 0
+    temp = 1
 
-for i in range(len(lst)):
-    if lst[i] == '(':
-        stackTwo.append(i)
-        value *= 2
-    elif lst[i] == '[':
-        stackThree.append(i)
-        value *= 3
+    stack = []
+    for i in range(len(data)):
 
-    elif lst[i] == ')':
-        if(stackTwo):
-            if(lst[i-1] == '('):
-                result += value
-            stackTwo.pop()
-            value //= 2
-        else:
-            checked = False
-            break
-    elif lst[i] == ']':
-        if(stackThree):
-            if(lst[i-1] == '['):
-                result += value
-            stackThree.pop()
-            value //= 3
+        if data[i] == '(':
+            stack.append(data[i])
+            temp *= 2
 
-        else:
-            # print(i)
-            # print(stackThree)
-            checked = False
-            break
+        elif data[i] == '[':
+            stack.append(data[i])
+            temp *= 3
 
+        elif data[i] == ')':
+            if len(stack) == 0 or stack[-1] != '(':
+                return 0
+            if data[i - 1] == '(':
+                score += temp
+            temp //= 2
+            stack.pop()
 
-if not stackTwo and not stackThree and checked:
-    print(result)
-else:
-    print(0)
+        elif data[i] == ']':
+            if len(stack) == 0 or stack[-1] != '[':
+                return 0
+            if data[i - 1] == '[':
+                score += temp
+            temp //= 3
+            stack.pop()
+
+    return score if len(stack) == 0 else 0
