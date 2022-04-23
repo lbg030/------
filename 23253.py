@@ -1,3 +1,6 @@
+# 간단하게 생각하면
+# 결국 stacks 가 들어오는데 한개라도 내림차순으로 정렬이 안되어 있다면 결국 실패함.
+
 n, m = map(int, input().split())
 checked = 0
 for _ in range(m):
