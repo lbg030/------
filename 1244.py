@@ -2,7 +2,7 @@ from sys import stdin
 
 n = int(stdin.readline().rstrip())
 li = list(map(int, stdin.readline().rstrip().split()))
-
+# print(len(li))
 personNumber = int(input())
 personList = []
 
@@ -18,10 +18,10 @@ for _ in range(personNumber):
             else:
                 li[number * idx-1] = 1
             idx += 1
-    print(f" 남학생 거쳤을때 {li}")
+        # print(f" 남학생 거쳤을때 {li}")
     # --------------------------------
 
-    if(gender == 2):
+    elif(gender == 2):
         idx = 0
         while True:
             idx += 1
@@ -33,7 +33,7 @@ for _ in range(personNumber):
 
             else:
                 if number - idx - 1 < 0 or number + idx - 1 >= len(li):
-                    print(" 0보다 작음")
+                    # print(" 0보다 작음")
                     for i in range(number - idx, number + idx - 1):
                         if(li[i] == 1):
                             li[i] = 0
@@ -41,17 +41,24 @@ for _ in range(personNumber):
                             li[i] = 1
                     break
 
-                # number가 3일 때 1이랑 3을 가르켜야함. -> 0 4
+                # number가 3일 때 1이랑 3을 가르켜야함. -> 0
+                # 4가 들어왔을 때 3,5가 다르므로 바로 종료 시켜야댐.
+                # [0, 1, 1, 1, 0, 1, 0, 1]
                 if(li[number - idx - 1] != li[number+idx-1]):
-                    print(" 다름 ")
-                    print(number - idx - 1, number + idx - 1)
-                    for i in range(number - idx - 1, number + idx):
+                    # print(" 다름 ")
+                    # print(number - idx - 1, number + idx - 1)
+                    for i in range(number - idx, number + idx-1):
                         if(li[i] == 1):
                             li[i] = 0
                         else:
                             li[i] = 1
                     break
 
-              # print(number - idx - 1)
-
-print(li)
+    # print(li)
+# output = list(map(int, input().split()))
+# print(output == li)
+for idx, value in enumerate(li):
+    if(idx % 20 == 0 and idx != 0):
+        print()
+        # print(idx)
+    print(value, end=' ')
