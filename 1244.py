@@ -4,7 +4,6 @@ n = int(stdin.readline().rstrip())
 li = list(map(int, stdin.readline().rstrip().split()))
 # print(len(li))
 personNumber = int(input())
-personList = []
 
 for _ in range(personNumber):
     gender, number = map(int, input().split())
@@ -44,7 +43,7 @@ for _ in range(personNumber):
                 # number가 3일 때 1이랑 3을 가르켜야함. -> 0
                 # 4가 들어왔을 때 3,5가 다르므로 바로 종료 시켜야댐.
                 # [0, 1, 1, 1, 0, 1, 0, 1]
-                if(li[number - idx - 1] != li[number+idx-1]):
+                elif(li[number - idx - 1] != li[number+idx-1]):
                     # print(" 다름 ")
                     # print(number - idx - 1, number + idx - 1)
                     for i in range(number - idx, number + idx-1):
