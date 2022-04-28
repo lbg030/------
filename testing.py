@@ -1,12 +1,14 @@
-# information[a,b] a,b를 리스트로 ,금액을 x 변수로 설정했습니다.
+def solve(start, end):
+    result = 0
+    for i in range(start, end):
+        result += i
 
-# x변수가 5000원이면 a가 출력되게, 5000원이 아니면 b가 출력되게 하고 싶은데요
+    return result
 
-# if x==50000 :
-#  print(information[0])
 
-# else:
-#  print(information[1]로 코드를 넣었는데 x에 어떤 숫자를 넣든 b가 나오더라구요.
+start = int(input())
+end = int(input())
 
-# 이 경우에는 어떻게 코드를 짜야하나요? x==50000이라는 상황이  작동하지 않습니다.
-# (꼭 리스트 안에 문자열이 출력되게 하고 싶어요)
+answer = solve(start, end)
+
+print(f"Sum from {start} to {end} is {answer}")
