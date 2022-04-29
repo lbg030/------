@@ -1,7 +1,10 @@
-lol = [[1, 2, 3], [4, 5], [6, 7, 8, 9]]
-print(lol[0])
-print(lol[2][1])
-for sub in lol:
-    for item in sub:
-        print(item, end='')
-    print()
+def mySum(n):
+    print(n)
+
+
+def main():
+    print(mySum(2, 3, 4, 6, 8, 19))
+    print(mySum(5, 20, 10, 3, 9, 2))
+
+
+main()
