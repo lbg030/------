@@ -1,4 +1,1 @@
-2
-i found
-an interesting cave
-i found an cave interesting
+)))()
