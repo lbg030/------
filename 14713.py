@@ -4,9 +4,6 @@ n = int(input())
 sentence = [deque(input().split()) for _ in range(n)]
 possible = deque(input().split())
 
-# i i
-# i found interesting cave
-# i found i an i cave interesting 이 구문을 처리해줘야됨.
 
 while True:
     check = 0
@@ -21,9 +18,15 @@ while True:
 
     if check == 0:
         print("Impossible")
-        print(possible)
+        # print(possible)
         break
 
     if len(possible) == 0:
-        print("Possible")
+        length = 0
+        for i in range(n):
+            length += len(sentence[i])
+        if length != 0:
+            print("Impossible")
+        else:
+            print("Possible")
         break
