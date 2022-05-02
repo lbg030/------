@@ -10,3 +10,5 @@ for i in range(len(n)):
             stack.pop()
         else:
             error += 1
+
+print(error)
