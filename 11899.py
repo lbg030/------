@@ -6,9 +6,11 @@ for i in range(len(n)):
         stack.append(n[i])
 
     else:
-        if stack[-1] == '(':
-            stack.pop()
+        if len(stack) > 0:
+            if stack[-1] == '(':
+                stack.pop()
+            else:
+                error += 1
         else:
             error += 1
-
-print(error)
+print(error + len(stack))
