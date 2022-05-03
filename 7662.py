@@ -43,11 +43,14 @@ for _ in range(case):
             # 최대값
             elif b == '1':
                 while maxList:
+                  # 만약 이미 제거 된 문자열이 존재한다면 전부 다 제거
                     if removed[maxList[0][1]] == 1:
                         heapq.heappop(maxList)
                     else:
                         break
                 if maxList:
+                  # while문에서 제거된 문자열들은 제거되고 맨앞에 있는 숫자가
+                  # 제일 큰 숫자이기 때문에 max설정하고
                     max = maxList[0][1]
                     removed[max] = 1
                     heapq.heappop(maxList)
