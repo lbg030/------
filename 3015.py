@@ -30,6 +30,7 @@ def solve():
         else:
             stk.append((h, 1))
             ans += 1
+    # print(stk)
     return ans
 
 
