@@ -2,6 +2,7 @@
 import sys
 HEIGHT, CNT = 0, 1
 input = sys.stdin.readline
+output = int(input())
 
 
 def solve():
