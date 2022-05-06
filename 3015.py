@@ -1,40 +1,41 @@
-# 스택,큐 활용
-import sys
-HEIGHT, CNT = 0, 1
-input = sys.stdin.readline
-output = int(input())
+# deque나 두개 리스트 써도 시간초과 발생
+from sys import stdin
 
+# 사람수
+number = int(input())
 
-def solve():
-    stk = []
-    ans = 0
-    for h in arr:
-        print(f"{stk}, {h}, ans = {ans}")
-        # stack에 현재 사람보다 작은 사람이 있으면, POP하고, answer에 저장된 CNT 추가
-        # h값이 입력될 때, top과 h 값만 비교하면 되기 때문에, stack에는 내림차순으로 관리를 할거임.
-        while stk and stk[-1][HEIGHT] < h:
-            ans += stk.pop()[CNT]
-        # 스택이 비어있다면, 입력받은 값과 , cnt(1) 추가
-        if not stk:
-            stk.append((h, 1))
-            continue
-        # h와 stack top이 같다면, stk에서 pop 해주고, 같은 키인 사람들 만큼
-        if stk[-1][HEIGHT] == h:
-            cnt = stk.pop()[CNT]
-            ans += cnt
-            # 현재 키보다 큰 사람이 있다면, 같은 키가 입력 될 때마다, 그 사람도 볼 수 있음.
-            if stk:
-                ans += 1
-            # 현재 키인 사람과 같은 사람이 입력되면, cnt만큼 있으므로, cnt+1을 해준다.
-            stk.append((h, cnt+1))
-        # stack이 비어있지 않고, stack top이 더 큰 경우 , 왼쪽 사람만 나는 볼 수 있음.
-        else:
-            stk.append((h, 1))
-            ans += 1
-    # print(stk)
-    return ans
+# 현재 사람들의 키
+people = []
 
+# 스택에는 사용자의 키와, 몇명을 볼 수 있는지 넣음.
+stack = []
 
-N = int(input().rstrip())
-arr = [int(input().rstrip()) for _ in range(N)]
-print(solve())
+# 몇명인지 세기
+cnt = 0
+
+# 사람 append
+for _ in range(number):
+    people.append(int(stdin.readline().rstrip()))
+
+for x in people:
+    # 스택이 존재하고 x가 마지막 사람보다 크다면 여기서 종료.
+    while stack and stack[-1][0] < x:
+        cnt += stack.pop()[1]  # 카운트 더해주기.
+
+    # 만약 스택이 존재하지 않는다면 넣어주기
+    if not stack:
+        stack.append([x, 1])
+        continue
+
+    if stack[-1][0] == x:
+        count = stack.pop()[1]
+        cnt += count
+        if stack:
+            cnt += 1
+        stack.append([x, count + 1])
+
+    # 들어온 값이 전에 값 보다 작을 때 .
+    else:
+        stack.append([x, 1])
+        cnt += 1
+print(cnt)
