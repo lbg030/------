@@ -1,4 +1,6 @@
 # deque나 두개 리스트 써도 시간초과 발생
+# 이해가 잘 x
+
 from sys import stdin
 
 # 사람수
@@ -27,14 +29,15 @@ for x in people:
         stack.append([x, 1])
         continue
 
+    # 만약 들어온 값이 전에 값과 같다면
     if stack[-1][0] == x:
-        count = stack.pop()[1]
+        count = stack.pop()[1]  # 왜 빼는지 모르겠음
         cnt += count
         if stack:
             cnt += 1
-        stack.append([x, count + 1])
+        stack.append([x, count + 1])  # 이 부분은 이해 가능
 
-    # 들어온 값이 전에 값 보다 작을 때 .
+    # 들어온 값이 전에 값 보다 작을 때.
     else:
         stack.append([x, 1])
         cnt += 1
