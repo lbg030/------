@@ -9,6 +9,10 @@ for i in range(roadLength):
     zombie.append([i+1, int(stdin.readline().rstrip())])
 
 while True:
+    print(zombie)
+    if not zombie:
+        print('Yes')
+        break
     # 마인이 존재 할때에는 무조건 Yes임
     if mine:
         # 첫번째 좀비를 라이플로 못잡을 때는 mine 사용
@@ -33,5 +37,14 @@ while True:
     else:
         # 만약 첫번째 좀비를 라이플로 못죽이면 끝
         if zombie[0][1] > damage:
+
             print('No')
             break
+        else:
+            for i in range(rifleLength):
+                # 만약 리스트 길이 초과 시 멈춤
+                if i > len(zombie):
+                    break
+                else:
+                    zombie[i][1] -= damage
+                    zombie.popleft()
