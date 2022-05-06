@@ -6,7 +6,6 @@ mine = int(input())
 zombie = deque([])
 # 마인이 몇개 필요한지
 cnt = 0
-check = 0
 for i in range(roadLength):
     zombie.append([i+1, int(stdin.readline().rstrip())])
 
@@ -14,13 +13,15 @@ for i in range(roadLength):
 # 빡구현말고 논리적으로 풀어보기
 for i, x in zombie:
     if i < rifleLength:
-        if damage * (i - check) < x:
+        if damage * (i - cnt) < x:
             cnt += 1
-            check += 1
+        # print(i, damage * (i - cnt))
     else:
-        if (rifleLength - check) * damage < x:
+        if (rifleLength - cnt) * damage < x:
             cnt += 1
-    print(i, x, cnt)
+        # print(i, (rifleLength - cnt) * damage)
+    # print(i, (rifleLength - cnt) * damage)
+    # print(i, x, cnt)
 if cnt > mine:
     print('NO')
 else:
