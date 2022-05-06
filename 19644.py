@@ -25,6 +25,8 @@ for i, x in zombie:
         # print(i, (rifleLength - check) * damage)
     # print(i, (rifleLength - check) * damage)
     # print(i, x, cnt)
+
+    # 만약에 0인 좀비가 나왔을 때에는 거리를 한칸 버는 셈이므로 빼준다
     if check > 0:
         if x == 0:
             check -= 1
