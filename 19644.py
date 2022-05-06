@@ -19,3 +19,9 @@ for i, x in zombie:
     else:
         if rifleLength * damage < x:
             cnt += 1
+
+    print(i, x, cnt)
+if cnt > mine:
+    print('NO')
+else:
+    print('YES')
