@@ -30,6 +30,7 @@ for i, x in zombie:
     if check > 0:
         if x == 0:
             check -= 1
+
 if cnt > mine:
     print('NO')
 else:

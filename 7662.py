@@ -19,7 +19,7 @@ for _ in range(testCase):
 
         elif a == 'D':
             # 최대값
-            if b == 1:
+            if b == 1 :
                 while heapMax:
                     # 만약 이미 삭제된 숫자면 제거
                     if removed[heapMax[0][1]] == 1:
