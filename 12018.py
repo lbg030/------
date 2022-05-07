@@ -1,5 +1,5 @@
 subjectCase, mileage = map(int, input().split())
-print("1")
+
 lst = []
 answer = 0
 for _ in range(subjectCase):
