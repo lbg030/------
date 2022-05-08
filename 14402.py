@@ -1,11 +1,10 @@
-import sys
-input = sys.stdin.readline
+from sys import stdin
 
 q = int(input())
 dic = {}
 count = 0
 for _ in range(q):
-    info = list(input().split())
+    info = list(stdin.readline().rstrip().split())
     name, data = info[0], info[1]
 
     if data == '-':
