@@ -1,8 +1,7 @@
-7
-nein +
-nein -
-nein -
-nein -
-nein +
-nein +
-nein +
+6
+6
+10
+13
+9
+8
+1
