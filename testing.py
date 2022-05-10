@@ -1,22 +1,15 @@
-clothes = [["crowmask", "face"], ["bluesunglasses", "face"], ["smoky_makeup", "face"]]
+from collections import Counter
+from functools import reduce
 
-dic = {}
-categoryList = []
-cnt = 0
+clothes = [["yellowhat", "headgear"], ["bluesunglasses", "eyewear"], ["green_turban", "headgear"]]
 
-for x,y in clothes:
-    if y not in dic :
-        dic[y] = [x]
-        categoryList.append(y)
-    else :
-        dic[y].append(x)
-        
-if len(categoryList) == 1 :
-    cnt = len(dic[categoryList[0]])
-else :
-    mul = 1
-    for x in categoryList:
-        cnt += len(dic[x])
-        mul *= len(dic[x])
-    cnt += mul
-print(cnt)
+def solution(clothes):
+    from collections import Counter
+    from functools import reduce
+    cnt = Counter([kind for name, kind in clothes])
+    print(cnt)
+    answer = reduce(lambda x, y: x*(y+1), cnt.values(), 1) - 1
+    print(answer)
+    return answer
+
+print(solution(clothes))
