@@ -1,11 +1,22 @@
-# 1 2 4 8
-# 1 2 4 9
-# 1 2 4 10
-# 1 2 5 10
+clothes = [["crowmask", "face"], ["bluesunglasses", "face"], ["smoky_makeup", "face"]]
 
-test = 1
-n, m = 4, 10
+dic = {}
+categoryList = []
+cnt = 0
 
-
-dp = [i for i in range(1, m+1)]
-print(dp)
+for x,y in clothes:
+    if y not in dic :
+        dic[y] = [x]
+        categoryList.append(y)
+    else :
+        dic[y].append(x)
+        
+if len(categoryList) == 1 :
+    cnt = len(dic[categoryList[0]])
+else :
+    mul = 1
+    for x in categoryList:
+        cnt += len(dic[x])
+        mul *= len(dic[x])
+    cnt += mul
+print(cnt)
