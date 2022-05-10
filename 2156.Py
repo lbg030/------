@@ -22,7 +22,9 @@ if n > 2:
 
 #3 이상인 경우에 돌리기
 for i in range(3, n):
-    dp[i] = max(dp[i-1], dp[i-3]+lst[i-1]+lst[i], dp[i-2]+lst[i])
+    # 하나도 선택X, 두번째꺼와 이번것 [ 2 0 ], [3 1 0]
+    dp[i] = max(dp[i-1], dp[i-2] + lst[i], dp[i-3] + lst[i-1] + lst[i])
     # print("for")
 
+# print(dp)
 print(dp[n-1])
