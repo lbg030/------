@@ -8,12 +8,13 @@ for _ in range(q):
     name, data = info[0], info[1]
 
     if data == '-':
-        if name not in dic or dic[name] == 0:  # 3
+        if name not in dic or dic[name] == 0:
             count += 1
-        elif name in dic:  # 2
+        elif name in dic:
             dic[name] -= 1
 
-    else:  # 1
+    # +
+    else:
         if name not in dic:
             dic[name] = 1
         else:
@@ -24,3 +25,4 @@ if len(dic) == 0:
     print(count)
 else:
     print(sum(dic.values()) + count)
+print(sum(dic.values()))
