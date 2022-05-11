@@ -9,10 +9,8 @@ n = int(input())
 
 #숫자들 리스트
 lst = sorted(list(map(int, stdin.readline().rstrip().split())))
-
-
-
-
+realList = lst[:]
+cnt = 0 
 #이분 탐색 알고리즘
 def binary_search(target, data):
     start = 0
@@ -29,3 +27,21 @@ def binary_search(target, data):
             end = mid -1
 
     return 0
+
+if len(lst) < 3:
+    print("0")
+else:
+    for i in range(n):
+        for j in range(i+1,n):
+            #비교 리스트 초기화
+            compareList = lst[:]
+
+            # 더한 값
+            m = lst[i] + lst[j]
+
+            del compareList[i]
+            del compareList[j-1]
+            # print(compareList)
+            a = binary_search(m, compareList)
+            if a == 1 :
+                pass
