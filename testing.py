@@ -1,14 +1,2 @@
-from collections import Counter
-from functools import reduce
-
-clothes = [["yellowhat", "headgear"], ["bluesunglasses", "eyewear"], ["green_turban", "headgear"]]
-
-def solution(clothes):
-    from collections import Counter
-    from functools import reduce
-    cnt = Counter([kind for name, kind in clothes])
-    print(cnt)
-    answer = reduce(lambda x, y: x*(y+1), cnt.values(), 1) - 1
-    return answer
-
-print(solution(clothes))
+a = list({3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19})
+print(a.pop())
