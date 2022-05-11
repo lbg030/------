@@ -28,8 +28,10 @@ def binary_search(target, data):
 
     return 0
 
+#길이가 3미만이라면 성립 불가
 if len(lst) < 3:
     print("0")
+
 else:
     for i in range(n):
         for j in range(i+1,n):
@@ -43,5 +45,8 @@ else:
             del compareList[j-1]
             # print(compareList)
             a = binary_search(m, compareList)
-            if a == 1 :
-                pass
+            if a == 1 and m in realList:
+                cnt += 1
+                realList.remove(m)
+            # print(realList)
+    print(cnt)
