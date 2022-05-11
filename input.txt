@@ -1,1 +1,8 @@
-[["yellowhat", "headgear"], ["bluesunglasses", "eyewear"], ["green_turban", "headgear"]]
+7
+nein +
+nein -
+nein -
+nein -
+nein +
+nein +
+nein +

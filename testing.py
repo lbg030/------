@@ -9,7 +9,6 @@ def solution(clothes):
     cnt = Counter([kind for name, kind in clothes])
     print(cnt)
     answer = reduce(lambda x, y: x*(y+1), cnt.values(), 1) - 1
-    print(answer)
     return answer
 
 print(solution(clothes))
