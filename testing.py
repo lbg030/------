@@ -1,5 +1,10 @@
-lst = []
-for i in range(5):
-    lst.append(int(input("정수를 입력하시오: ")))
+dic = {'1': [0], '2': [20]}
 
-print("평균=",sum(lst) / 5)
+dic['1'].append(20)
+
+print(dic.keys(), dic.values())
+
+a = list(dic.keys())
+b = list(dic.values())
+
+print(a,b)
