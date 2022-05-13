@@ -18,3 +18,5 @@ b = list(dic.values())
 
 print(a,b)
 print(len(a),sum(b[0]), len(b), sum(b[1]))
+
+print(max(sum(b[0]),sum(b[1])))
