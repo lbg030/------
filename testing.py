@@ -11,12 +11,19 @@ for i in range(len(genres)):
         else :
             dic[genresDic].append(plays[i])
 
-print(dic.keys(), dic.values())
-
+# print(dic.keys(), dic.values())
+lst = []
 a = list(dic.keys())
 b = list(dic.values())
-
-print(a,b)
-print(len(a),sum(b[0]), len(b), sum(b[1]))
-
-print(max(sum(b[0]),sum(b[1])))
+for i in b :
+    lst.append(sum(i))
+print(a)
+print(lst)
+ranking = []
+for i in lst :
+    ranking.append(sorted(lst, reverse=True).index(i))
+print(ranking)
+print(dic)
+for i in range(len(ranking)):
+    for j in range(len(plays)):
+        
