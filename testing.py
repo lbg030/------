@@ -17,3 +17,4 @@ a = list(dic.keys())
 b = list(dic.values())
 
 print(a,b)
+print(len(a), len(b))
