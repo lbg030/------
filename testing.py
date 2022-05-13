@@ -1,4 +1,5 @@
-food = {'밥': 100, '라면':200, '빵': 300}
+lst = []
+for i in range(5):
+    lst.append(int(input("정수를 입력하시오: ")))
 
-for x in food :
-    print(x, food[x])
+print("평균=",sum(lst) / 5)
