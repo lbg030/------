@@ -26,4 +26,4 @@ print(ranking)
 print(dic)
 for i in range(len(ranking)):
     for j in range(len(plays)):
-        
+        pass
