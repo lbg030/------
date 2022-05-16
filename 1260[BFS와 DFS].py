@@ -14,6 +14,7 @@ for _ in range(m):
 #좀 더 쉬움
 def dfs(start, answer = []):
     answer.append(start)
+    #이 포문을 통해서 0인것은 지나치고 어느것이랑 연결되어있는지 체크
     for i in range(1, n+1):
         if graph[start][i] == 1 and i not in answer:
             #2중 배열을 선언하였기 때문에 이미 지나갔단 의미로 0으로 바꿔 주어야 한다.
