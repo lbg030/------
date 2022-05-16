@@ -10,6 +10,7 @@ for _ in range(m):
 
 print(graph)
 
+#좀 더 쉬움
 def dfs(start):
     pass
 
