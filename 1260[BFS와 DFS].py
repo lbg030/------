@@ -1,5 +1,8 @@
 # DFS BFS
 
+#BFS popleft 위해서 deque 사용
+from collections import deque
+
 n, m, start = map(int, input().split())
 
 graph = [[0] * (n+1) for _ in range(n+1)]
@@ -25,9 +28,14 @@ def dfs(start, answer = []):
             #만약 연결되어 있지 않은 간선이 있으면 
             #연결이 안된것이기 때문에 무시하고 return 해도 됨.
             return answer
-            
+
+#bfs용 데크와 ans
+lst = deque()
+ans = [start]
 def bfs(start):
-    pass
+    for i in range(1, n+1):
+        if graph[start][i] == 1 :
+            lst.append(i)
 
 dfsAnswer = dfs(start)
 bfsAnswer = bfs(start)
