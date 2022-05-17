@@ -38,6 +38,6 @@ def bfs(start):
             lst.append(i)
 
 dfsAnswer = dfs(start)
-bfsAnswer = bfs(start)
+# bfsAnswer = bfs(start)
 print(*dfsAnswer)
-print(*bfsAnswer)
+# print(*bfsAnswer)
