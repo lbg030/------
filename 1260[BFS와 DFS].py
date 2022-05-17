@@ -36,8 +36,12 @@ def bfs(start):
     for i in range(1, n+1):
         if graph[start][i] == 1 :
             lst.append(i)
-
+            print(i, lst)
+            #추가했으면 0으로 초기화
+            graph[start][i] = graph[i][start] = 0
+            
+            
 dfsAnswer = dfs(start)
-# bfsAnswer = bfs(start)
+bfsAnswer = bfs(start)
 print(*dfsAnswer)
-# print(*bfsAnswer)
+print(*bfsAnswer)
