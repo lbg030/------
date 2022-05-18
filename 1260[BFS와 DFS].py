@@ -31,16 +31,21 @@ def dfs(start, answer = []):
 
 #bfs용 데크와 ans
 lst = deque()
-ans = [start]
+ans = []
 def bfs(start):
+    ans.append(start)
     for i in range(1, n+1):
         if graph[start][i] == 1 :
             lst.append(i)
-            print(i, lst)
-            #추가했으면 0으로 초기화
             graph[start][i] = graph[i][start] = 0
-            
-            
+        print(lst)
+    
+    if lst :
+        a = lst.popleft()
+        bfs(a)
+    else :
+        return ans
+    
 dfsAnswer = dfs(start)
 bfsAnswer = bfs(start)
 print(*dfsAnswer)
