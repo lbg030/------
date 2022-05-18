@@ -1,3 +1,5 @@
+#출발역은 항상 0 번째
+
 n = int(input())
 subway = {}
 for i in range(1,n+1):
