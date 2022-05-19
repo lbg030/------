@@ -1,13 +1,24 @@
-#출발역은 항상 0 번째
-#BFS로 해결해야 될 것 같음
-
 n = int(input())
-subway = {}
-for i in range(1,n+1):
-    subway[i] = list(map(int, input().split()))[1:]
-destination = int(input())
+metro = []
 
-print(subway, destination)
+for q in range(n):
+    metro.append(list(map(int,input().split()))[1:])
 
-def BFS(start, final):
-    pass
+fin = int(input())
+c = [0]; d = []; cnt = 0
+while True:
+    for i in c:
+        for j in range(n):
+            if i in metro[j]:
+                d = d + metro[j]
+            print(f"i = {i}, c = {c},d = {set(d)} ,cnt = {cnt}")
+    d = list(set(d))
+    if fin in d:
+        break
+    cnt += 1
+    if cnt > n:
+        cnt = -1
+        break
+    c = d
+    d = []
+print(cnt)
