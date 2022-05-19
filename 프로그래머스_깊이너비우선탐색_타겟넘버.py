@@ -6,17 +6,32 @@
 #number = [1,1,1,1,1] target = 3
 #더하기 빼기로 dfs 생성
 def solution(numbers, target):
+    from collections import deque
     answer = 0
     a = numbers.pop()
-    lst = [[a, -a]]
+    lst = deque([[a, -a]])
     while numbers:
         #숫자 하나 빼기
         a = numbers.pop()
         tempList=[]
+        summation = sum(numbers)
         #점점 가지 수 늘려나가기 DFS
         for i in range(len(lst[-1])):
-            tempList.append([lst[-1][i] + a, lst[-1][i] - a])
-        lst.append(sum(tempList, []))
+            #더하거나 빼거나 하는 경우 2가지를 정의
+            plus, minus = lst[-1][i] + a, lst[-1][i] - a
+            # 3, -1 summation = 5, target = 4
+            if(plus > target and plus - summation > target):
+                if(minus + summation >= target):
+                    tempList.append([minus])
+            else:
+                if(minus + summation >= target):
+                    tempList.append([plus,minus])
+                else :
+                    tempList.append([plus])
+        if tempList:
+            lst.append(sum(tempList, []))
+            lst.popleft()
+    # print(lst)
     for x in lst[-1]:
         if x == target:
             answer += 1
