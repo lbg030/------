@@ -9,16 +9,16 @@ def solution(numbers, target):
     from collections import deque
     answer = 0
     a = numbers.pop()
-    lst = deque([[a, -a]])
+    lst = deque([a, -a])
     while numbers:
         #숫자 하나 빼기
         a = numbers.pop()
         tempList=[]
         summation = sum(numbers)
         #점점 가지 수 늘려나가기 DFS
-        for i in range(len(lst[-1])):
+        for i in range(len(lst)):
             #더하거나 빼거나 하는 경우 2가지를 정의
-            plus, minus = lst[-1][i] + a, lst[-1][i] - a
+            plus, minus = lst[i] + a, lst[i] - a
             # 3, -1 summation = 5, target = 4
             if(plus > target and plus - summation > target):
                 if(minus + summation >= target):
@@ -29,10 +29,10 @@ def solution(numbers, target):
                 else :
                     tempList.append([plus])
         if tempList:
-            lst.append(sum(tempList, []))
-            lst.popleft()
+            lst = deque(sum(tempList, []))
+            print(lst)
     # print(lst)
-    for x in lst[-1]:
+    for x in lst:
         if x == target:
             answer += 1
     return answer
