@@ -16,6 +16,6 @@ for i in range(testCase):
         for j in range(length):
             if graph[j][i] == 1:
                 if graph[j+1][i] == 0 and graph[j][i+1] == 0:
-                    # print(j, i)
+                    print(j, i)
                     cnt += 1
     print(cnt)
