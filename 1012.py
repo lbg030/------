@@ -19,3 +19,6 @@ for i in range(testCase):
                     print(j, i)
                     cnt += 1
     print(cnt)
+    print(graph)
+    
+    #들어온 Input에 대해서만 그래프 탐색을 돌리면 쓸모없는거 할 필요 없음 .
