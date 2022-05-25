@@ -19,4 +19,3 @@ for i in range(testCase):
                     print(j, i)
                     cnt += 1
     print(cnt)
-    print(graph)
