@@ -1,3 +1,5 @@
+from collections import deque
+
 case = int(input())
 
 #(100+1+ | 01)+
@@ -5,3 +7,5 @@ case = int(input())
 lst = ['100','1','01']
 for i in range(case):
     compared = input()
+    while compared :
+        
