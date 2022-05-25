@@ -1,1 +1,6 @@
-lst = [100, 200]
+a = int(input("정수입력 --> "))
+print()
+print("10진수:", a)
+print("2진수:", bin(a)[2:])
+print("8진수:", oct(a)[2:])
+print("16진수:", hex(a)[2:])
