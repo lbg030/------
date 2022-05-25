@@ -1,4 +1,5 @@
 import re
+#re 정규식 이용
 t = int(input())
 for i in range(t):
     a = input()
