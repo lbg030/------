@@ -14,6 +14,16 @@ for i in range(size):
         else:
             board[i][j] = board[i][j-1] + board[i][j]
 
-print(board)
+# print(board)
 for j in range(case):
+    ans = 0
     x1, y1, x2, y2 = map(int, input().split())
+    if x1 == x2 and y1 == y2 :
+        ans = board[x2-1][y2] - board[x2-1][y2-1]
+    elif x1 == 1 and y1 == 1:
+        ans = board[x2-1][y2]
+    else :
+        ans = board[x2-1][y2] - board[x1-1][y1]
+        
+    print(ans)
+    # print(board)
