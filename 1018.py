@@ -23,5 +23,5 @@ for a in range(N-7):
                         index2 += 1
         count.append(min(index1, index2))
 
-print(count)
+# print(count)
 print(min(count))

@@ -14,16 +14,6 @@ for i in range(size):
         else:
             board[i][j] = board[i][j-1] + board[i][j]
 
-for _ in range(case):
-    x1, y1, x2, y2 = map(int, input().split())
-    second = board[x2-1][y2]
-    first = board[x1-1][y1-1]
-    # print(second, first)
-    if x1 == 1 and y1 == 1:
-        result = second
-    elif x1 == x2 and y1 == y2:
-        result = second - board[x1-1][y1-2]
-    else:
-        result = second - first
-    print(result)
 print(board)
+for j in range(case):
+    x1, y1, x2, y2 = map(int, input().split())
