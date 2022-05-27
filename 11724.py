@@ -16,12 +16,12 @@ def bfs(start):
     
     while lst:
         a = lst.popleft()
-        for i in range(N+1):
+        for i in range(1, N+1):
             if graph[a][i] == 1:
                 lst.append(i)
                 graph[a][i] = graph[i][a] = 0
                 visited[a-1] = True
-                
+                visited[i-1] = True
 N, M = map(int , input().split())
 graph = [[0] * (N+1) for _ in range(N+1)]
 cnt = 0
@@ -35,7 +35,8 @@ for i in range(1,N+1):
             bfs(i)
             cnt += 1
 # print(graph)
-print(visited.count(False))
-print(cnt)
+# print(visited)
+# print(visited.count(False))
+print(cnt + visited.count(False))
 
     
