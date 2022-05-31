@@ -1,78 +1,44 @@
 from collections import deque
 
+dx = [1, -1, 0, 0]
+dy = [0, 0, 1, -1]
+
+def bfs(x, y):
+    q.append([x, y])
+    c[x][y] = cnt
+    while q:
+        x, y = q.popleft()
+        for i in range(4):
+            nx = x + dx[i]
+            ny = y + dy[i]
+            if 0 <= nx < n and 0 <= ny < n:
+                if a[nx][ny] == a[x][y] and c[nx][ny] == 0:
+                    q.append([nx, ny])
+                    c[nx][ny] = 1
 
 n = int(input())
+a = [list(map(str, input())) for _ in range(n)]
+c = [[0]*n for _ in range(n)]
+q = deque()
 
-Cowgraph = [list(input()) for _ in range(n)]
-notCowgraph = []
+cnt = 0
+for i in range(n):
+    for j in range(n):
+        if c[i][j] == 0:
+            bfs(i, j)
+            cnt += 1
+print(cnt, end=' ')
 
-dx = [0,0,1,-1]
-dy = [1,-1,0,0]
-#G -> R로 변경
-for x in Cowgraph:
-    tempList = []
-    for k in x:
-        temp = k.replace("G","R")
-        tempList.append(temp)
-    notCowgraph.append(tempList)
-cowvisited = [[False] * n for _ in range(n)]
-notCowvisited = [[False] * n for _ in range(n)]
+for i in range(n):
+    for j in range(n):
+        if a[i][j] == 'R':
+            a[i][j] = 'G'
+c = [[0]*n for _ in range(n)]
 
-Cowcnt = 0
-notCowCnt = 0
-#Cowart = 적록색약
-#notCowart = 적록색약 아님
-
-def notCowArt(x,y):
-    queue = deque()
-    queue.append((x,y))
-    # notCowvisited[x][y] == True
-    while queue:
-        notCowvisited[x][y] = True
-        for i in range(4):
-            nx = x + dx[i]
-            ny = y + dy[i]
-                
-            if nx < 0 or ny < 0 or nx >= n or ny >= n :
-                    continue
-            
-            if Cowgraph[nx][ny] == Cowgraph[x][y] and cowvisited[nx][ny] == False:
-                cowvisited[nx][ny] = True
-                queue.append((nx,ny))
-    return 
-
-def cowArt(x,y):
-    queue = deque()
-    queue.append((x,y))
-    while queue:
-        notCowgraph[x][y] = 0
-        for i in range(4):
-            nx = x + dx[i]
-            ny = y + dy[i]
-                
-            if nx < 0 or ny < 0 or nx >= n or ny >= n :
-                    continue
-            
-            if notCowgraph[nx][ny] == notCowgraph[x][y] and notCowvisited[nx][ny] == False:
-                notCowgraph[nx][ny] = 0
-                queue.append((nx,ny))
-    return 
-
-for x in range(n):
-    for y in range(n):
-        if y+1 < n :
-            if Cowgraph[x][y] == Cowgraph[x][y+1]:
-                cowArt(x,y) 
-                Cowcnt +=  1
-            elif notCowgraph[x][y] == notCowgraph[x][y+1]:
-                notCowArt(x,y)
-                notCowCnt += 1  
-        if x+1 < n:
-            if Cowgraph[x][y] == Cowgraph[x+1][y]:
-                cowArt(x,y)
-                Cowcnt += 1
-            if notCowgraph[x][y] == notCowgraph[x+1][y]:
-                notCowArt(x,y)
-                notCowCnt += 1
-
-print(Cowcnt, notCowCnt)
+cnt = 0
+for i in range(n):
+    for j in range(n):
+        if c[i][j] == 0:
+            bfs(i, j)
+            cnt += 1
+print(cnt)
