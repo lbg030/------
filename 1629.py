@@ -1,10 +1,10 @@
 n,m,d = map(int, input().split())
 k = 1
-lst = []
 n = n % d
+lst = [n]
 answer = 0
 while True:
-    x = (n ** k) % d
+    x = (lst[-1] * n) % d
     # print(x)
     if x not in lst:
         lst.append(x)
@@ -16,5 +16,5 @@ while True:
         answer = lst[(m % len(lst)) - 1]
         break
 
-print(answer % d)
-print(lst)
+print(answer)
+# print(lst)
