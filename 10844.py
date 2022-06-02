@@ -1,15 +1,17 @@
-n = int(input())
-dp = [0] * (n+1)
-dp[1] = 9
+import sys
+# sys.stdin=open('input.txt')
+from collections import deque
+mod = 10**9
 
-if n == 1:
-    print(dp[n])
-else :
-    dp[2] = 17
-# 9 17 32 61 116
-#  8 15 29 57
-    for i in range(3, n+1):
-        dp[i] = (dp[i-1] * 2) - (i-1)
+N=int(sys.stdin.readline())
+mm=[[0]*10 for _ in range(N+2)]
+mm[1]=[0,1,1,1,1,1,1,1,1,1]
 
-    print(dp[n])
-    print(dp)
+for i in range(2,N+1):
+    mm[i][0] = mm[i-1][1]
+    mm[i][9] = mm[i-1][8]
+    for j in range(1,9):
+        mm[i][j] = mm[i-1][j-1]+mm[i-1][j+1]
+
+# print(mm)
+print(sum(mm[N])%mod)
