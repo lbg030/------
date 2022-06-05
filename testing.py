@@ -1,4 +1,17 @@
-theaterList = ["CGV", "메가박스", "롯데시네마"]
-print("1.CGV 2.메가박스 3.롯데시네마")
-theater = theaterList[int(input("영화관을 숫자로 선택해주세요: ")) - 1]
-print(theater)
+a,b,c = map(int, input("세 수를 입력하시오 : ").split())
+
+def mean3(a,b,c):
+    result = round( ((a+b+c) / 3),1)
+    print(f"{a}, {b}, {c}의 평균값은 {result}")
+    max3(a,b,c)
+    
+def max3(a,b,c):
+    result = max(min(a,b),c)
+    print(f"{a}, {b}, {c}의 최댓값은 {result}")
+    min3(a,b,c)
+
+def min3(a,b,c):
+    result = min(min(a,b),c)
+    print(f"{a}, {b}, {c}의 최솟값은 {result}")
+    
+mean3(a,b,c)
