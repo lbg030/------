@@ -1,17 +1,14 @@
-a,b,c = map(int, input("세 수를 입력하시오 : ").split())
+## 1번
 
-def mean3(a,b,c):
-    result = round( ((a+b+c) / 3),1)
-    print(f"{a}, {b}, {c}의 평균값은 {result}")
-    max3(a,b,c)
+for i in range(1, 101):
+    if i % 5 == 0 or i % 7 == 0:
+        continue
+    print(i)
     
-def max3(a,b,c):
-    result = max(min(a,b),c)
-    print(f"{a}, {b}, {c}의 최댓값은 {result}")
-    min3(a,b,c)
+## 2번
 
-def min3(a,b,c):
-    result = min(min(a,b),c)
-    print(f"{a}, {b}, {c}의 최솟값은 {result}")
-    
-mean3(a,b,c)
+num = 0
+while True:
+    if num >= 30 : break
+    print(num)
+    num += 1
