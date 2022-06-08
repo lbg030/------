@@ -1,20 +1,10 @@
-x, y = map(float, input("두 수를 입력하세요: ").split())
+def f(x):
+    n = len(x)
+    for k in range(n-1) :
+        if x[k] > x[k+1]:
+            x[k], x[k+1] = x[k+1], x[k]
+            
+    return x
 
-print("1.더하기 2. 빼기 3. 곱하기 4. 나누기")
-method = int(input("계산 방식을 숫자로 선택하세요. "))
 
-
-if method == 1:
-    print(x+y)
-
-elif method == 2:
-    print(x - y)
-    
-elif method == 3:
-    print(x*y)
-    
-else :
-    if y == 0:
-        print('0으로 나눌 수 없습니다.')
-    else :
-        print(x/y)
+print(f([40,30,10,20]))
