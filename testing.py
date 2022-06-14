@@ -1,7 +1,10 @@
-a = int(input("1보다 큰 양의 정수를 입력하세요. "))
+import random
 
-answer = 1
-for i in range(1,a+1):
-    answer = answer * i
-
-print("factorial data :", answer)
+fd = open('./playlist.txt', 'r', encoding="UTF-8")
+lines = fd.readlines()
+lines.sort()
+# print(lines)
+number = random.randint(0, len(lines))
+print(lines[number])
+print('플레이리스트 곡 수 ☞ ', len(lines))
+fd.close()
