@@ -1,10 +1,10 @@
-import random
+from collections import deque
+t = deque()
+lst = []
+lst.append((1,2))
+lst.append((2,3))
 
-fd = open('./playlist.txt', 'r', encoding="UTF-8")
-lines = fd.readlines()
-lines.sort()
-# print(lines)
-number = random.randint(0, len(lines))
-print(lines[number])
-print('플레이리스트 곡 수 ☞ ', len(lines))
-fd.close()
+t.append(lst)
+k = deque([[]])
+print(len(t))
+print(len(k))
