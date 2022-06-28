@@ -1,16 +1,38 @@
-n = int(input())
+#1초에 1m씩 이동한다.
+n, m = map(int, input().split())
+aList = []
+bList = []
 
-lst = []
-cnt = 0
-tempCnt = 1
-lst.append(int(input()))
-for _ in range(n-1):
-    x = lst.pop()
-    lst.append(int(input()))
-    if x * lst[-1] > 0:
-        # print("1")
-        tempCnt += 1
+aDistance = 0
+bDistance = 0
+for _ in range(n):
+    b,a = input().split()
+    
+    b = int(b)
+    if a == "R":
+        for _ in range(b):
+            aDistance += 1
+            aList.append(aDistance)
     else :
-        cnt = max(cnt, tempCnt)
-        tempCnt = 1
-print(max(cnt, tempCnt))
+        for _ in range(b):
+            aDistance -= 1
+            aList.append(aDistance)
+    
+for _ in range(m):
+    b,a = input().split()
+    b = int(b)
+    if a == "R":
+        for _ in range(b):
+            bDistance += 1
+            bList.append(bDistance)
+    else :
+        for _ in range(b):
+            bDistance -= 1
+            bList.append(bDistance)
+flag = -1
+for i in range(len(aList)):
+    if aList[i] == bList[i]:
+        flag = i+1
+        break
+
+print(flag)
