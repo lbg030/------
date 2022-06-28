@@ -1,4 +1,9 @@
+#메모리 초과가 계속 떠서 pypy3대신 python3사용하였고
+# 메모리 초과가 뜬 이유는 check를 업데이트 해주지 않아서 메모리 초과가 떳었음
+
 from collections import deque
+import sys
+input=sys.stdin.readline
 
 length,width,trash = map(int, input().split())
 
@@ -30,7 +35,7 @@ def bfs(x,y):
             if 0 <= nx < length+1 and 0<= ny < width +1 :
                 if graph[nx][ny] == 1 and check[nx][ny] == False:
                     queue.append((nx,ny))
-    
+                    check[nx][ny] = True # 이 코드를 빼먹으면 메모리 초과 발생
     return cnt  
 
 for i in range(1, length+1):
