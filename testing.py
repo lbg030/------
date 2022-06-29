@@ -1,4 +1,4 @@
-#1초에 1m씩 이동한다.
+
 n, m = map(int, input().split())
 aList = []
 bList = []
@@ -29,10 +29,34 @@ for _ in range(m):
         for _ in range(b):
             bDistance -= 1
             bList.append(bDistance)
-flag = -1
-for i in range(len(aList)):
-    if aList[i] == bList[i]:
-        flag = i+1
-        break
 
-print(flag)
+if len(aList) < len(bList):
+    aList.extend(([aList[-1]] * (len(bList) - len(aList))))
+else :
+    bList.extend(([bList[-1]] * (len(aList) - len(bList))))
+    
+a,b = 0,0            
+cnt = 0
+maximum = max(len(aList), len(bList))
+
+if aList[0] == bList[0] :
+    cnt += 1
+
+# second = 2
+if maximum > 1:
+    for i in range(1, maximum):
+        # second += 1
+        
+        aTemp = aList[i-1]
+        a = aList[i]
+        bTemp = bList[i-1]
+        b = bList[i]
+
+        if a == b and (aTemp != bTemp):
+            cnt += 1
+            
+        # print(second)
+
+print(cnt)
+# print(aList)
+# print(bList)
