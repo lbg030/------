@@ -1,21 +1,22 @@
-from collections import deque
 
-def bfs():
-    q=deque()
-    q.append(n)
-    while q:
-        now=q.popleft()
-        if now==k:
-            return
-        for i in (now-1,now+1,now*2):
-            print(i)
-            if 0<=i<100001 and dp[i]==0:
-                dp[i]=dp[now]+1
-                q.append(i)
+n, m = map(int, input().split())
+s = []
+queue = []
+dx = [1, -1, 0, 0]
+dy = [0, 0, -1, 1]
+for i in range(n):
+    s.append(list(input()))
+queue = [[0, 0]]
+s[0][0] = 1
 
-n,k=map(int,input().split())
-dp=[0]*100001
-
-bfs()
-print(dp[k])
-print(dp[:k+1])
+while queue:
+    a, b = queue[0][0], queue[0][1]
+    del queue[0]
+    for i in range(4):
+        x = a + dx[i]
+        y = b + dy[i]
+        if 0 <= x < n and 0 <= y < m and s[x][y] == "1":
+            queue.append([x, y])
+            s[x][y] = s[a][b] + 1
+print(s[n - 1][m - 1])
+print(s)
