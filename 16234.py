@@ -1,50 +1,64 @@
 from collections import deque
 
-n, l, r = map(int, input().split())
+n,l,r = map(int, input().split())
+
+#그래프
 lst = [list(map(int, input().split())) for _ in range(n)]
 
-cnt = 0
+#회수
+cnt = 0 
 
 dx = [1, -1, 0, 0]
-dy = [0, 0, -1, 1]
+dy = [0, 0, 1, -1]
 
-def bfs(i, j):
+# 방문했는지 체크용
+
+
+def bfs(x,y):
     q = deque()
-    q.append([i, j])
-    result = []
-    result.append([i, j])
+    result = []    #return할 result값
+    q.append((x,y))
+    result.append((x,y))
+    visited[x][y] = True
+    
     while q:
-        x, y = q.popleft()
+        a, b = q.popleft()
+        
+        
         for i in range(4):
-            nx = x + dx[i]
-            ny = y + dy[i]
             
-            if 0 <= nx < n and 0 <= ny < n and open[nx][ny] == 0:
-                if l <= abs(lst[nx][ny] - lst[x][y]) <= r:
-                    open[nx][ny] = 1    #open을 1로 지정함으로써 반복요소 제거
-                    q.append([nx, ny])
-                    result.append([nx, ny])
+            da = a + dx[i]
+            db = b + dy[i]
+            
+            if 0 <= da < n and 0 <= db < n and visited[da][db] == False:
+                if l <= abs(lst[da][db] - lst[a][b]) <= r :
+                    q.append((da,db))
+                    result.append((da,db))
+                    visited[da][db] = True
+                    
     return result
 
-
-while True:
-    open = [[0] * n for i in range(n)]
-    flag = False
-    
+while True :
+    visited = [[False] * n for _ in range(n)]
+    check = 0
     for i in range(n):
         for j in range(n):
-            if open[i][j] == 0:
-                open[i][j] = 1
+            if visited[i][j] == False:
+    
                 result = bfs(i, j)
                 
-                if len(result) > 1:
-                    flag = True
+                #1개 이상이 존재한다는 뜻
+                if len(result) > 1 :
+                    check = 1
+                    adding = 0
+                    for x,y in result :
+                        adding += lst[x][y]
+                    adding = adding // len(result)
                     
-                    num = sum([lst[x][y] for x, y in result]) // len(result)
-                    for x, y in result:
-                        lst[x][y] = num
-    if not flag:
+                    for x,y in result:
+                        lst[x][y] = adding
+                        
+    if check == 0:
+        print(cnt)
         break
     cnt += 1
-    
-print(cnt)

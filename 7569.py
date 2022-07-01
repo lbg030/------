@@ -1,44 +1,74 @@
+from sys import stdin
 from collections import deque
-import sys
+n, m, h = map(int, input().split())
 
-dx = [1, -1, 0, 0, 0, 0]
-dy = [0, 0, 1, -1, 0, 0]
-dz = [0, 0, 0, 0, 1, -1]
+lst = [list(map(int, stdin.readline().rstrip().split())) for i in range(m*h)]
+# print(lst)
 
-def bfs():
-    while q:
-        x, y, z = q.popleft()
-        for i in range(6):
+cnt = 0
+templist = deque()
+temp = []
+
+zeroCount = 0
+dx = [0, 0, 1, -1]
+dy = [1, -1, 0, 0]
+for i in range(m*h):
+    for j in range(n):
+        if lst[i][j] == 1:
+            temp.append((i, j))
+    
+templist.append(temp)
+
+while templist :
+    temp = []
+    cnt += 1
+    k = templist.popleft()
+    for i in k:
+        x,y = i
+        px = x + m
+        mx = x - m - 1
+        
+        if 0 <= px < m*h:
+            if lst[px][y] == 0:
+                lst[px][y] = 1
+                temp.append((px,y))
+                zeroCount -= 1
+                
+        if 0 <= mx < m*h:
+            if lst[mx][y] == 0:
+                lst[mx][y] = 1
+                temp.append((mx,y))
+                zeroCount -= 1
+                
+        for i in range(4):
             nx = x + dx[i]
             ny = y + dy[i]
-            nz = z + dz[i]
-            if 0 <= nx < k and 0 <= ny < n and 0 <= nz < m:
-                if a[nx][ny][nz] == 0 and c[nx][ny][nz] == 0:
-                    q.append([nx, ny, nz])
-                    a[nx][ny][nz] = 1
-                    c[nx][ny][nz] = c[x][y][z] + 1
 
-m, n, k = map(int, input().split())
-a = [[list(map(int, input().split())) for _ in range(n)] for _ in range(k)]
-c = [[[0]*m for _ in range(n)] for _ in range(k)]
-q = deque()
+            # print(x, y)
 
-for i in range(k):
-    for j in range(n):
-        for l in range(m):
-            if a[i][j][l] == 1 and c[i][j][l] == 0:
-                q.append([i, j, l])
-                c[i][j][l] = 1
+            if 0 <= nx < m*h and 0 <= ny < n:
+                if lst[nx][ny] == 0:
+                    lst[nx][ny] = 1
+                    zeroCount -= 1
+                    temp.append((nx, ny))
+                else : # 여기도 생각 다시 해봐야됨
+                    continue
+                
+    
+    if len(temp) > 0:
+        templist.append(temp)
+    # print(templist)
 
-bfs()
-for i in a:
-    for j in i:
-        if 0 in j:
-            print(-1)
-            sys.exit()
-ans = 0
-for i in c:
-    for j in i:
-        list_max = max(j)
-        ans = max(ans, list_max)
-print(ans-1)
+
+flag = 1
+
+for x in lst:
+    if x.count(0) > 0 :
+        flag = 0
+
+print("-1" if flag == 0 else cnt-1)
+# if flag == 0 :
+#     print('-1')
+# else :
+#     print(cnt-1)
+# print(lst)
