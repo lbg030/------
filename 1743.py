@@ -1,9 +1,4 @@
-#메모리 초과가 계속 떠서 pypy3대신 python3사용하였고
-# 메모리 초과가 뜬 이유는 check를 업데이트 해주지 않아서 메모리 초과가 떳었음
-
 from collections import deque
-import sys
-input=sys.stdin.readline
 
 length,width,trash = map(int, input().split())
 
