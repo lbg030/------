@@ -1,22 +1,14 @@
-a = list(input())
-b = list(input())
-dp = list([0] * (len(a)-1))
+import sys
+read = sys.stdin.readline
 
+word1, word2 = read().strip(), read().strip()
+h, w = len(word1), len(word2)
+cache = [[0] * (w+1) for _ in range(h+1)]
 
-for x in a:
-    if x not in b:
-        a.remove(x)
-
-cnt = 0
-temp = b[:]
-for x in a :
-        if x in temp :
-            start = temp.index(x)
-            cnt += 1
-            if start + 1 > len(temp)-1 :
-                break
-            temp = temp[start+1:]
-        else :
-            continue
-
-print(cnt)
+for i in range(1, h+1):
+    for j in range(1, w+1):
+        if word1[i-1] == word2[j-1]:
+            cache[i][j] = cache[i-1][j-1] + 1
+        else:
+            cache[i][j] = max(cache[i][j-1], cache[i-1][j])
+print(cache[-1][-1])
