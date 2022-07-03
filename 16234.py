@@ -23,8 +23,6 @@ def bfs(x,y):
     
     while q:
         a, b = q.popleft()
-        
-        
         for i in range(4):
             
             da = a + dx[i]
@@ -35,7 +33,7 @@ def bfs(x,y):
                     q.append((da,db))
                     result.append((da,db))
                     visited[da][db] = True
-                    
+    
     return result
 
 while True :

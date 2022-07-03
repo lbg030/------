@@ -1,44 +1,41 @@
-from collections import deque
+#BFS 및 deque 사용 -> 실패 
 import sys
+import collections
 
-dx = [1, -1, 0, 0, 0, 0]
-dy = [0, 0, 1, -1, 0, 0]
-dz = [0, 0, 0, 0, 1, -1]
+#값 범위 안에 있는지 check
+def is_in_range(H,N,M,h,r,c) :
+    return h>=0 and r>=0 and c>=0 and h<H and r<N and c<M
 
-def bfs():
-    while q:
-        x, y, z = q.popleft()
-        for i in range(6):
-            nx = x + dx[i]
-            ny = y + dy[i]
-            nz = z + dz[i]
-            if 0 <= nx < k and 0 <= ny < n and 0 <= nz < m:
-                if a[nx][ny][nz] == 0 and c[nx][ny][nz] == 0:
-                    q.append([nx, ny, nz])
-                    a[nx][ny][nz] = 1
-                    c[nx][ny][nz] = c[x][y][z] + 1
+#입력 읽어오기
+#visited 배열 생성 및 초기화
+M, N, H = map(int, sys.stdin.readline().split())
+box = [[sys.stdin.readline().split() for i in range(N)] for j in range(H)]
+not_visited = [[[1]*M for _ in range(N)] for _ in range(H)]
+number_of_tomato = M*N*H
+queue = collections.deque()
+ripen = 0
+#토마토 익을때 까지 걸리는 시간
 
-m, n, k = map(int, input().split())
-a = [[list(map(int, input().split())) for _ in range(n)] for _ in range(k)]
-c = [[[0]*m for _ in range(n)] for _ in range(k)]
-q = deque()
+direction = ((-1, 0, 0), (1, 0, 0), (0, -1, 0),(0, 1, 0), (0, 0, -1), (0, 0, 1))
 
-for i in range(k):
-    for j in range(n):
-        for l in range(m):
-            if a[i][j][l] == 1 and c[i][j][l] == 0:
-                q.append([i, j, l])
-                c[i][j][l] = 1
+for i in range(H):
+    for j in range(N):
+        for k in range(M):
+            if box[i][j][k] == '1':
+                queue.append((i, j, k, 0))
+            elif box[i][j][k] == '-1':
+                number_of_tomato -= 1
 
-bfs()
-for i in a:
-    for j in i:
-        if 0 in j:
-            print(-1)
-            sys.exit()
-ans = 0
-for i in c:
-    for j in i:
-        list_max = max(j)
-        ans = max(ans, list_max)
-print(ans-1)
+#BFS 수행 , queue에서 토마토 꺼낼 때 마다 토마토 개수 줄이기
+
+while queue:
+    h, r, c, ripenn = queue.popleft()
+    number_of_tomato -= 1
+    for i, j, k in direction:
+        nh, nr, nc = h+i, r+j, c+k
+        if nh >= 0 and nr >= 0 and nc >= 0 and nh < H and nr < N and nc < M:
+            if not_visited[nh][nr][nc] and box[nh][nr][nc] == '0':
+                queue.append((nh, nr, nc, ripen+1))
+                not_visited[nh][nr][nc] = False
+
+print(ripen if number_of_tomato == 0 else -1)

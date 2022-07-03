@@ -22,5 +22,6 @@ while queue:
         if 0 <= nx < n and 0 <= ny < m and graph[nx][ny] == "1":
             queue.append((nx,ny))
             graph[nx][ny] = graph[x][y] + 1
-    # print(x,y, queue)
+    
 print(graph[n-1][m-1])
+print(graph)

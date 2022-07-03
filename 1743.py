@@ -31,7 +31,7 @@ def bfs(x,y):
                 if graph[nx][ny] == 1 and check[nx][ny] == False:
                     queue.append((nx,ny))
                     check[nx][ny] = True # 이 코드를 빼먹으면 메모리 초과 발생
-    return cnt  
+    return cnt
 
 for i in range(1, length+1):
     for j in range(1, width+1):
