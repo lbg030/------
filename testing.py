@@ -1,2 +1,4 @@
-for i in range(10 ,1,-1):
-    print(i)
+dic = {"1" : [1,2,3] , "2" : [3,4,5,6]}
+
+dic["1"].append(4)
+print(dic["1"][-1])
