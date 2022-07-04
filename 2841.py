@@ -12,11 +12,33 @@ cnt = 0
 
 while lst:
     pitch, flat = lst.popleft() # [2,8] 이런 형태로 출력
-    
     pitch = str(pitch) # 딕셔너리로 풀기 위해
+    
     #pitch가 dic 안에 존재하지 않음.
     if pitch not in finger:
         cnt += 1
         finger[pitch] = [flat]
+    
     else :
-        if finger[pitch][-1]
+        if finger[pitch][-1] >= flat :
+            
+            while len(finger[pitch]) > 0 and finger[pitch][-1] > flat :
+                finger[pitch].pop()
+                cnt += 1
+                # print(cnt, pitch,flat)
+                
+            if finger[pitch]:
+                if finger[pitch][-1] == flat:
+                    # print(cnt, pitch,flat)
+                    continue
+                
+            finger[pitch].append(flat)
+            cnt += 1
+            # print(cnt, pitch,flat)
+            
+        else :
+            finger[pitch].append(flat)
+            cnt += 1
+            # print(cnt, pitch,flat)
+
+print(cnt)
