@@ -1,20 +1,19 @@
+#메모리가 적기 때문에 n 크기 만큼의 heap으로 계속 가져가야함
+import heapq
+
 n = int(input())
 
-lst = [list(map(int ,input().split())) for _ in range(n)]
-cnt = 0
-while  cnt < n :
-    deleted = 0
-     
-    for i in range(n):
-        if i == 0:
-            deletedValue = lst[i][-1]
-        else :
-            if lst[i][-1] > deletedValue:
-                deletedValue = lst[i][-1]
-                deleted = i
-    cnt += 1
+heap = list(map(int, input().split()))
+
+heapq.heapify(heap)
+
+# print(heap)
+for _ in range(n-1):
+    lst = list(map(int, input().split()))
     
-    if cnt == n:
-        print(lst[deleted].pop())
-    else :
-        lst[deleted].pop()
+    for x in lst:
+        if heap[0] < x:
+            heapq.heappop(heap)
+            heapq.heappush(heap, x)
+
+print(heap[0])
