@@ -1,14 +1,14 @@
-def isPrime(m,n):
-    a = [False,False] + [True]*(n-1)
-    primes = []
-    for i in range(2,n+1):
-        if a[i]:
-            if i >= m:
-                primes.append(i)
-            for j in range(2*i, n+1, i):
-                a[j] = False
-    return sum(primes)
+import sys
+read = sys.stdin.readline
 
-n,m = map(int, input().split())
+word1, word2 = read().strip(), read().strip()
+h, w = len(word1), len(word2)
+cache = [[0] * (w+1) for _ in range(h+1)]
 
-print(isPrime(n,m))
+for i in range(1, h+1):
+    for j in range(1, w+1):
+        if word1[i-1] == word2[j-1]:
+            cache[i][j] = cache[i-1][j-1] + 1
+        else:
+            cache[i][j] = max(cache[i][j-1], cache[i-1][j])
+print(cache[-1][-1])
