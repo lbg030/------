@@ -17,10 +17,10 @@ def bfs(n):
             print(dp[m])
             break
         
-        sec = dp[check] + 1 #이 부분을 밖으로 빼면 잘 됨
         for i in (check * 2,check-1, check+1):
-            if 0 <= i < maximum and dp[i] == 0 :
-                dp[i] = sec
+            if 0 <= i <= m+1 and dp[i] == 0 :
+                # i번째는 현재 check에서 한번만 수행하면 되기 때문에 +1로 처리
+                dp[i] = dp[check] + 1
                 queue.append(i)
 
 bfs(n)

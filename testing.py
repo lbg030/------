@@ -1,14 +1,26 @@
-import sys
-read = sys.stdin.readline
+from collections import deque
 
-word1, word2 = read().strip(), read().strip()
-h, w = len(word1), len(word2)
-cache = [[0] * (w+1) for _ in range(h+1)]
+n, m = map(int ,input().split())
+maximum = 100001
+visited = [0] * maximum 
 
-for i in range(1, h+1):
-    for j in range(1, w+1):
-        if word1[i-1] == word2[j-1]:
-            cache[i][j] = cache[i-1][j-1] + 1
-        else:
-            cache[i][j] = max(cache[i][j-1], cache[i-1][j])
-print(cache[-1][-1])
+def bfs(n):
+    q = deque()
+    q.append(n)
+    
+    while q : 
+        x = q.popleft()
+        if x == m :
+            print(visited[x])
+            break
+        if 0 <= x-1 < 100001 and visited[x-1] == 0:
+            q.append(x-1)
+            visited[x-1] = visited[x] + 1
+        if 0 <= x*2 < 100001 and visited[x*2] == 0:
+            q.append(x*2)
+            visited[x*2] = visited[x]
+        if 0 <= x+1 < 100001 and visited[x+1] == 0:
+            q.append(x+1)
+            visited[x+1] = visited[x] + 1
+
+bfs(n)
