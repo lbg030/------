@@ -2,25 +2,29 @@ from collections import deque
 
 n, m = map(int ,input().split())
 maximum = 100001
-visited = [0] * maximum 
+visited = [False] * maximum 
+
 
 def bfs(n):
     q = deque()
-    q.append(n)
+    q.append((n, 0))
+    least = abs(m-n) #가장 적은 cnt를 저장하기 위한 변수 ## 초기 값은 +1씩 했을때로 가정
     
     while q : 
-        x = q.popleft()
-        if x == m :
-            print(visited[x])
-            break
-        if 0 <= x-1 < 100001 and visited[x-1] == 0:
-            q.append(x-1)
-            visited[x-1] = visited[x] + 1
-        if 0 <= x*2 < 100001 and visited[x*2] == 0:
-            q.append(x*2)
-            visited[x*2] = visited[x]
-        if 0 <= x+1 < 100001 and visited[x+1] == 0:
-            q.append(x+1)
-            visited[x+1] = visited[x] + 1
-
-bfs(n)
+        value, count = q.popleft()
+        visited[value] = True
+        
+        if value == m :
+            least = min(least, count)
+        
+        if 0<= value -1 < maximum and visited[value -1] == False :
+            q.append((value -1, count + 1))
+            
+        if 0<= value + 1 < maximum and visited[value +1] == False:
+            q.append((value +1, count + 1))
+        
+        if 0 <= value * 2 < maximum and visited[value * 2] == False:
+            q.append((value * 2, count))
+            
+    return least
+print(bfs(n))
