@@ -1,20 +1,14 @@
-n,m,d = map(int, input().split())
-k = 1
-n = n % d
-lst = [n]
-answer = 0
-while True:
-    x = (lst[-1] * n) % d
-    # print(x)
-    if x not in lst:
-        lst.append(x)
-        k += 1
-    elif x == lst[-1]:
-        answer = x
-        break
-    else :
-        answer = lst[(m % len(lst)) - 1]
-        break
+a,b,c = map(int, input().split())
 
-print(answer)
-# print(lst)
+def solution(k):
+    if k == 1:
+        return a % c 
+    
+    if k % 2 == 0 :
+        left = solution(k//2)
+        return left * left % c
+    else:
+        left = solution(k//2)
+        return left * left * a % c
+
+print(solution(b))
