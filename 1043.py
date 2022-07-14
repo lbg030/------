@@ -14,10 +14,9 @@ for _ in range(m):
 for _ in range(m):
     for x in party:
         if x & knowTruth:
-            # print(x)
+            
             knowTruth = knowTruth.union(x)
             
-# print(knowTruth)
 
 for x in party:
     if x & knowTruth:
