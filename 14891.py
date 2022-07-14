@@ -17,8 +17,29 @@ t = int(input()) # 몇 번 회전시킬건지
 
 case = [list(map(int, input().split())) for _ in range(t)]
 
-# print(Gear, case)
+#톱니바퀴 왼쪽은 어디까지 돌아가나
+def gearLeft(n):
+    leftList = []
+    for i in range(n-1, 0, -1):
+        if check[i][0] != check[i-1][1]:
+            leftList.append(i-1)
+        else :
+            return leftList
+    return leftList
 
+def gearRight(n):
+    rightList = []
+    for i in range(n-1, 3, 1):
+        if check[i][1] != check[i+1][0]:
+            rightList.append(i)
+        else :
+            return rightList
+    return rightList
+check = [[-1, gear[0][2]], [gear[1][-2], gear[1][2]], [gear[2][-2], gear[2][2]],[gear[3][-2], -1]]
 for lst in case:
     gearNumber, rotation = lst[0], lst[1]
-    
+    print(check)
+    print(gearNumber)
+    changeLeft = gearLeft(gearNumber)
+    changeRight = gearRight(gearNumber)
+    print(changeLeft, changeRight)
