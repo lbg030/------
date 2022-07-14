@@ -10,3 +10,15 @@
 # deque로 rotate(1) 혹은 rotate(-1) 사용
 # k <= 100이기 때문에 readline 필요없음
 from collections import deque
+
+gear = [deque(list(map(int, input()))) for _ in range(4)] # 톱니바퀴
+
+t = int(input()) # 몇 번 회전시킬건지
+
+case = [list(map(int, input().split())) for _ in range(t)]
+
+# print(Gear, case)
+
+for lst in case:
+    gearNumber, rotation = lst[0], lst[1]
+    
