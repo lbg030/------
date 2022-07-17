@@ -35,7 +35,9 @@ def gearRight(n):
         else :
             return rightList
     return rightList
+
 check = [[-1, gear[0][2]], [gear[1][-2], gear[1][2]], [gear[2][-2], gear[2][2]],[gear[3][-2], -1]]
+
 for lst in case:
     gearNumber, rotation = lst[0], lst[1]
     print(check)
@@ -43,3 +45,13 @@ for lst in case:
     changeLeft = gearLeft(gearNumber)
     changeRight = gearRight(gearNumber)
     print(changeLeft, changeRight)
+    
+    for x in changeLeft:
+        rotation *= -1
+        gear[x].rotate(rotation)
+        
+    for x in changeRight:
+        rotation *= -1
+        gear[x].rotate(rotation)
+        
+    print(gear)

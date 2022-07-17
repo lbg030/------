@@ -1,43 +1,36 @@
-from collections import defaultdict
+# 이진 탐색 ( 조건의 크기가 크므로 , 시간 복잡도 생각해서 )
+# 빠른 탐색을 위해 -> 문자열 길이에 따라 단어 저장
+# 이진 탐색을 위한 정렬 ( 일반 정렬 , 역순 정렬 )
+# 해당 단어 갯수 세는데 적절한 라이브러리 ' bisect 라이브러리 사용 '
+# bisect 라이브러리 공부 참고 https://velog.io/@ssongplay/Python-bisect-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC
+
 from bisect import bisect_left, bisect_right
 
-word= ["frodo", "front", "frost", "frozen", "frame", "kakao"]
-queries = ["fro??", "????o", "fr???", "fro???", "pro?"]
+def count_by_range(arr, left_value, right_value):
+    left_index = bisect_left(arr, left_value)
+    right_index = bisect_right(arr, right_value)
+    return right_index - left_index
 
-
-
-def solution(words, queries):
-    answer = []
-    d = defaultdict(list) # 구현을 편하게 해준다. 모른다면 찾아보면 좋다.
-    r_d = defaultdict(list)
+def solution(words, queries) :
+    answer = [] # 단어 길이 순으로 분리하기 위해서 딕셔너리 생성
+    arr = [[] for _ in range(10001)]
+    reversed_arr = [[] for _ in range(10001)]
+    # 단어 길이 순으로 분리
     for word in words:
-        d[len(word)].append(word) # 길이 별로 저장
-        r_d[len(word)].append(word[::-1]) # 순서를 뒤집은 배열
-    for k in d.keys():
-        d[k].sort() # 이진 탐색을 위해 sort
-        r_d[k].sort() 
-        
+        arr[len(word)].append(word)
+        reversed_arr[len(word)].append(word[::-1])
+    # 정렬 시키기
+    for i in range(10001):
+        arr[i].sort()
+        reversed_arr[i].sort()
+
+    # 쿼리 하나씩 확인하며
     for query in queries:
-        n = len(query)
-        cnt = 0
-        e_query = query.replace('?', 'z')
-        # print(e_query)
-        # print(r_d)
-        if query == '?'*n:
-            cnt += len(d[n])
-        
-        #접두사일때는 뒤집어서 search
-        elif query[0] == '?':
-            query, e_query = query[::-1], e_query[::-1]
-            l, r = bisect_left(r_d[n], query), bisect_left(r_d[n], e_query)
-            print(l,r)
-            cnt += r-l
+        # 접두사에 와일드 카드 붙은 경우
+        if query[0] == '?':
+            cnt = count_by_range(reversed_arr[len(query)],query.replace('?','a')[::-1], query.replace('?','z')[::-1])
+        # 접미사에 와일드 카드 붙은 경우
         else:
-            l, r = bisect_left(d[n], query), bisect_left(d[n], e_query)
-            cnt += r-l
-
+            cnt = count_by_range(arr[len(query)], query.replace('?','a'),query.replace('?','z'))
         answer.append(cnt)
-            
     return answer
-
-print(solution(word, queries))
