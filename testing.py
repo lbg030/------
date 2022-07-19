@@ -1,3 +1,11 @@
-lst = [list(input().split()) for _ in range(5)]
+n, m = map(int , input().split())
 
-print([list(map(lambda x: x.upper(), lst[i])) for i in range(5)])
+lst = [[0] * n for _ in range(m)]
+
+k = 1
+for i in range(n):
+    for j in range(i,-1, -1):
+        lst[i][j] = k
+        k += 1
+
+print(lst)
