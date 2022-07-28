@@ -6,21 +6,11 @@ for _ in range(n):
     flag = 1
     for _ in range(x):
         test.append(input())
-        
-    for x in test:
-        if not flag :
+
+    test.sort()
+    
+    for i in range(x-1):
+        if test[i+1].startswith(test[i]):
+            flag = 0
             break
-        else :
-            for y in test:
-                if x != y and x.startswith(y):
-                    flag = 0
-                    print('NO')
-                    break
-    if flag:
-        print("YES")
-        
-
-# k = '91125426'
-# j = '911'
-
-# print(k.startswith(j))
+    print("NO" if flag == 0 else 'YES')
