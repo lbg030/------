@@ -2,27 +2,24 @@ from collections import deque
 
 n, m = map(int, input().split())
 limit = m//2
-q = deque([[n]])
-cnt = 0
+q = deque([(n,1)])
 temp = []
-flag = 0 
+minCnt = float("inf")
+flag = 0
 while q:
-    values = q.popleft()
-    for value in values:
-        if value == m:
-            flag = 1
-            break
+    values,cnt = q.popleft()
+    
+    if values == m:
+        minCnt = min(minCnt, cnt)
+        flag = 1
+        continue
+    
+    double,plus= values * 2, int(str(values) + '1')
+    
+    if double <= m:
+        q.append((double, cnt+1))
         
-        elif value <= limit+1:
-            temp.append(value * 2)
-            temp.append(int(str(value) + '1'))
-            
-    if temp :
-        cnt += 1
-        q.append(temp)
-        temp = []
-
-    if flag:
-        break
-
-print(cnt if flag else "-1")
+    if plus <= m:
+        q.append((plus, cnt+1))
+    
+print(minCnt if flag else "-1")

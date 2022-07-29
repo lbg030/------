@@ -1,6 +1,4 @@
-n = int(input())
-m = int(input())
+ls = (1,2)
 
-x = list(input().split())
-
-print(x)
+for i,x in ls:
+    print(i,x)
