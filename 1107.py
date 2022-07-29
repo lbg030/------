@@ -16,7 +16,6 @@ for i in range(limit):
         if x in broken:
             break
     else :
-        print(i)
         res = min(res, len(str(i)) + abs(i - n))
         
 print(res)
