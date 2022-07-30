@@ -1,60 +1,45 @@
 from collections import deque
+
 n, m = map(int, input().split())
-ground = [list(map(int, list(input()))) for _ in range(n)]
-# 0,0 출발 n-1, m-1 도착 벽 한번 부술 수 있음
+graph = []
 
-dx = [1,-1,0,0]
-dy = [0,0,1,-1]
+# 3차원 행렬을 통해 벽의 파괴를 파악함. visited[x][y][0]은 벽 파괴 가능. [x][y][1]은 불가능.
+visited = [[[0] * 2 for _ in range(m)] for _ in range(n)]
+visited[0][0][0] = 1
 
-def bfs():
-    q = deque()
-    q.append((0,0,1,1))
-    
-    while q:
-        x,y,cnt,availableBroken = q.popleft()
+for i in range(n):
+    graph.append(list(map(int, input())))
+
+# 상하좌우
+dx = [0, 0, 1, -1]
+dy = [1, -1, 0, 0]
+
+
+def bfs(x, y, z):
+    queue = deque()
+    queue.append((x, y, z))
+
+    while queue:
+        a, b, c = queue.popleft()
+        
+        # 끝 점에 도달하면 이동 횟수를 출력
+        if a == n - 1 and b == m - 1:
+            return visited[a][b][c]
         
         for i in range(4):
-            nx = x + dx[i]
-            ny = y + dy[i]
-            
-            if 0<= nx < n and 0<= ny < m:
-                if ground[nx][ny] == 0:
-                    ground[nx][ny] = [(cnt+1, availableBroken,False)]
-                    q.append((nx,ny,cnt+1,availableBroken))
-                
-                #벽을 부순 경우
-                elif ground[nx][ny] == 1 and availableBroken == 1:
-                    ground[nx][ny] = [(cnt+1, availableBroken-1,True)]
-                    q.append((nx,ny,cnt+1,availableBroken-1))
-                    
-                #1이지만 벽을 부술 수 없는 경우
-                elif ground[nx][ny] == 1 and availableBroken == 0:
-                    continue
-                    
-                #이미 (cnt,availableBroken, alreadyBroken)이 들어갔는데 다시 들어가 보는 경우
-                else:
-                    for lst in ground[nx][ny]:
-                        
-                    #벽을 부순 경우가 아닐경우
-                        if lst[2] == False and availableBroken != lst[1]:
-                            if cnt +1 < lst[0]:
-                                        ground[nx][ny].append([cnt+1,availableBroken,False])
-                                        q.append((nx,ny,cnt+1, availableBroken))
-                                    
-                            #벽을 부순 경우(1이였기 때문에 새로들어온 얘도 벽을 부술수 있어야함)
-                        else :
-                                #벽을 부술수 있는 경우
-                                if availableBroken and lst[1] != availableBroken:
-                                    if cnt + 1 < lst[0]:
-                                        ground[nx][ny].append([cnt+1,availableBroken-1,True])
-                                        q.append((nx,ny,cnt+1, availableBroken-1))
+            nx = a + dx[i]
+            ny = b + dy[i]
+            if nx < 0 or nx >= n or ny < 0 or ny >= m:
+                continue
+            # 다음 이동할 곳이 벽이고, 벽파괴기회를 사용하지 않은 경우
+            if graph[nx][ny] == 1 and c == 0 :
+                visited[nx][ny][1] = visited[a][b][0] + 1
+                queue.append((nx, ny, 1))
+            # 다음 이동할 곳이 벽이 아니고, 아직 한 번도 방문하지 않은 곳이면
+            elif graph[nx][ny] == 0 and visited[nx][ny][c] == 0:
+                visited[nx][ny][c] = visited[a][b][c] + 1
+                queue.append((nx, ny, c))
+    return -1
 
-                                #벽을 부술수 없는 경우
-                                else:
-                                    continue
-bfs()
-print(ground)
-if ground[-1][-1] == 0 :
-    print("-1")
-else :
-    print(ground[-1][-1][0])
+print(bfs(0, 0, 0))
+# print(visited)
