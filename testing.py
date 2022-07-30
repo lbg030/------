@@ -1,4 +1,3 @@
-ls = (1,2)
+lst = [1,2,'하늘']
 
-for i,x in ls:
-    print(i,x)
+print(type(lst))
