@@ -1,17 +1,25 @@
-#파이참에서는 돌아가는데 백준에서 런타임 에러💢
+n = int(input())
+m = int(input())
+button = {str(i) for i in range(10)}
+button1 = []
 
-test_case = int(input())
-for _ in range(test_case):
-    n = int(input())
-    dp = []
-    for i in range(2):
-        dp.append(list(map(int, input().split())))
+if m != 0:
+    errorbuttons = list(map(str, input().split(" ")))
+    for i in button:
+        if i not in errorbuttons:
+            button1.append(i)
+else:
+    button1 = button
 
-    dp[0][1] += dp[1][0]
-    dp[1][1] += dp[0][0]
+minCount = abs(100 - n)
 
-    for j in range(2, n):
-        dp[0][j] += max(dp[1][j - 1], dp[1][j - 2])
-        dp[1][j] += max(dp[0][j - 1], dp[0][j - 2])
+for num in range(1000001):
+    num = str(num)
 
-    print(max(dp[0][n - 1], dp[1][n - 1]))
+    for j in range(len(num)):
+        if num[j] not in button1: # 어떤 수가 갱신된 button1에 없으면
+            break # 번호 누르기 로는 이동 불가
+    else : #
+            minCount = min(minCount, abs(n - int(num)) + len(str(num)))
+
+print(minCount)
