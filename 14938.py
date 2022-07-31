@@ -25,7 +25,6 @@ def dijkstra(start):
             if cost < distance[i[0]]:
                 distance[i[0]] = cost
                 heapq.heappush(q, (cost,i[0]))
-  
 
 
 n,m,r = map(int, input().split()) # n은 지역 개수, m은 수색 범위, r은 길의 개수
