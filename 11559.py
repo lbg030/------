@@ -1,16 +1,19 @@
 from collections import deque
 
 field = [list(input()) for _ in range(12)]
-visited = [[False] * 6 for _ in range(12)]
+# print(field)
 flag = 1
+
 dx = [0, 0, 1, -1]
 dy = [1, -1, 0, 0]
+
 res = 0
 
 def bfs(i,j):
     color = field[i][j]
-    q = deque((i,j))
-    removed = [i,j]
+    q = deque()
+    q.append((i,j))
+    removed = [(i,j)]
     cnt = 1
     visited[i][j] = True
     
@@ -25,28 +28,43 @@ def bfs(i,j):
                     visited[nx][ny] = True
                     removed.append((nx,ny))
                     cnt += 1
+        # print(removed, color)
+        # print(field)
     if cnt >= 4:
         for x,y in removed:
             field[x][y] = '.'
-            return True
+        return True
     
     else :
         return False
 
 
-while flag:
+while flag > 0:
     flag = 0
+    visited = [[False] * 6 for _ in range(12)]
     for i in range(12):
         for j in range(6):
             if field[i][j] != '.':
-                flag = bfs(i,j)
-                if flag :
-                    res += 1
-                    
-
-    for i in range(11):
-        for j in range(6):
-            if field[i][j] != '.' and field[i+1][j] == '.':
-                field[i+1][j] == field[i][j]
-                field[i][j] = '.'
+                flag += bfs(i,j)
                 
+                    
+    # print(field,res)
+    # 중력에 따라 내려가게 하기
+    for i in range(10,-1,-1):
+        for j in range(5,-1,-1):
+            if field[i][j] != '.' and field[i+1][j] == '.': 
+                for k in range(1,11-i+1):
+                    if field[i + k][j] != '.':
+                        field[i+k-1][j] = field[i][j]
+                        field[i][j] = '.'
+                        break
+                    
+                    elif i+k == 11:
+                        field[i+k][j] = field[i][j]
+                        field[i][j] = '.'
+                            
+                # field[i+1][j] = field[i][j]
+                # field[i][j] = '.'
+    # print(field)
+    res += 1
+print(res-1)

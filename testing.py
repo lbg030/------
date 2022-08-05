@@ -1,3 +1,4 @@
-a = set((1,2,3,2,6,3,4))
+flag = 0 
+flag += True
 
-print(a)
+print(flag)
