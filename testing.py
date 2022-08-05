@@ -1,4 +1,2 @@
-flag = 0 
-flag += True
-
-print(flag)
+a = 12
+b = 13
