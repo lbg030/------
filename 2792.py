@@ -9,12 +9,7 @@ maximum = sum(lst)
 
 while minimum <= maximum:
     mid = (minimum + maximum) // 2
-    
-    if mid == 0 :
-        break
-    
     student = 0
-    
     for x in lst :
         if x % mid > 0 :
             student += x // mid + 1
@@ -27,5 +22,4 @@ while minimum <= maximum:
     else :
         maximum = mid - 1
         ans = mid
-
 print(ans)
