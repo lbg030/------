@@ -1,3 +1,3 @@
-import testing
+from testing import *
 
-print(testing.a)
+print(a)
