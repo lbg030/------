@@ -22,22 +22,21 @@ else:
     
     for i in range(len(lst)-1):
         l, r = i+1, n-1
-            
+        
         while l < r:
             value = lst[i] + lst[l] + lst[r]
-            if value == 0:
-                break
             
-            elif abs(value) < abs(prev):
+            if abs(value) < abs(prev):
                 prev = value
                 x, y, z  = i, l , r
-                
+                if prev == 0:
+                    break
         
             if value < 0 :
                 l += 1
             else :
                 r -= 1
-
+    print(*sorted((lst[x],lst[y],lst[z])))
 #반례
 #----------------------------------------------------------------
 
@@ -57,3 +56,14 @@ else:
 # <답>
 
 # -968846127 195376182 817446019
+
+## 2차 반례
+#----------------------------------------------------------------
+
+# < 케이스 >
+
+# 4
+# -5 2 3 4
+
+# < 답 >
+# -5 2 3
