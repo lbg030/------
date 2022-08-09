@@ -1,3 +1,3 @@
-from testing import *
+n = 99
 
-print(a)
+print((n*(n+1)) // 2)

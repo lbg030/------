@@ -1,23 +1,47 @@
-# BOJ 2470 두 용액
-import sys
-input = sys.stdin.readline
-N = int(input())
-sol = list(map(int, input().split()))
-sol.sort()
-l, r = 0, N-1
-near_zero = 9876543210
-zero_l, zero_r = 0, 0
+from collections import deque
+from re import X
 
-while l<r:
-    temp = sol[l]+sol[r]
-    if abs(temp) < abs(near_zero):
-        near_zero = temp
-        zero_l, zero_r = l, r
-        if near_zero == 0:
-            break
-    if temp < 0:
-        l += 1
+
+N, M = map(int, input().split())
+summing = (N * (N+1) // 2)
+
+check_list = [0] + [1] * N
+graph = [[0] * (N+1) for _ in range(N+1)]
+dx = [0,0,1,-1]
+dy = [1,-1,0,0]
+
+for _ in range(M):
+    x,y = map(int, input().split())
+    graph[x][y] = graph[y][x] = 1
+
+
+def bfs(v):
+        discovered = [v]
+        queue = deque(v)
+        
+        while queue:
+            x = queue.popleft()
+            for w in graph[x]:
+                if w not in discovered:
+                    discovered.append(w)
+                    queue.append(w)
+        print(discovered)
+        return sum(discovered)
+    
+for i in range(1,N+1):
+    if i == N:
+        print("DISCONNECT")
+    
     else:
-        r -= 1
-
-print(sol[zero_l], sol[zero_r])
+        k = int(input())
+        summing -= k
+        check_list[k] = 0
+        if check_list[i]:
+            flag = bfs(i)
+            
+            if flag == summing:
+                print("CONNECT")  
+            else:
+                print("DISCONNECT")
+                
+            continue
