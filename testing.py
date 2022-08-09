@@ -1,20 +1,23 @@
-N, M, L = map(int, input().split())
-arr = [0]+list(map(int, input().split()))+[L]
-arr.sort()
+# BOJ 2470 두 용액
+import sys
+input = sys.stdin.readline
+N = int(input())
+sol = list(map(int, input().split()))
+sol.sort()
+l, r = 0, N-1
+near_zero = 9876543210
+zero_l, zero_r = 0, 0
 
-start, end = 1, L-1
-result = 0
-while start <= end:
-    count = 0
-    mid = (start+end) // 2
-    for i in range(1, len(arr)):
-        # 현재 거리 중 mid보다 큰 거리를 찾아서
-        if arr[i]-arr[i-1] > mid:
-            # 나눈 만큼 휴게소를 설치 (현재 설치 돼있는 구역은 제외해야해서 -1)
-            count += (arr[i]-arr[i-1]-1)//mid
-    if count > M:
-        start = mid+1
+while l<r:
+    temp = sol[l]+sol[r]
+    if abs(temp) < abs(near_zero):
+        near_zero = temp
+        zero_l, zero_r = l, r
+        if near_zero == 0:
+            break
+    if temp < 0:
+        l += 1
     else:
-        end = mid-1
-        result = mid
-print(result)
+        r -= 1
+
+print(sol[zero_l], sol[zero_r])
