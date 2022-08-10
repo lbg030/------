@@ -5,10 +5,9 @@
 # 게임이 끝날 조건 = valid
 # 1. X가 5개 O가 4개 였을 경우
 # 2. X나 O가 한줄(가로, 세로, 대각선)을 차지했을경우
-from sys import stdin
 
 while True:
-    lst = list(stdin.readline().rstrip().split())
+    lst = list(input())
     
     #end 종료
     if len(lst) == 3:
@@ -22,12 +21,3 @@ while True:
     if x_cnt == 5 and o_cnt == 4:
         print("valid")
         continue
-    
-    # 룰에 맞지 않음
-    elif x_cnt < o_cnt or x_cnt - o_cnt > 1 :
-        print("invalid")
-        break
-    
-    else:
-        lst2 = [lst[i:i+3] for i in range(0,9,3)]
-    
