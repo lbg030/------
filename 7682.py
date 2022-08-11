@@ -1,97 +1,65 @@
-# 반드시 첫 번째 사람이 X를 놓고 두 번째 사람이 O를 놓는다. 
-# 어느 때든지 한 사람의 말이 가로, 세로, 대각선 방향으로 3칸을 잇는 데 성공하면 게임은 즉시 끝난다. 게임판이 가득 차도 게임은 끝난다.
-
-
-# 게임이 끝날 조건 = valid
-# 1. X가 5개 O가 4개 였을 경우
-# 2. X나 O가 한줄(가로, 세로, 대각선)을 차지했을경우
-
-
-def Tic_Tac_Toe(x_cnt, o_cnt, lst):
-    flag = 0
-    for i in range(4):
-        if lst[i] == 'X':
-            if i == 0:
-                if (lst[i] == lst[i+1] == lst[i+2]) or (lst[i] == lst[i+3] == lst[i+6]) or(lst[i] == lst[i+4] == lst[i+8]):
-                    flag = 1
-                    break
-            
-            elif i == 1:
-                if (lst[i] == lst[i+3] == lst[i+6]) :
-                    flag = 1
-                    break
-            
-            elif i == 2:
-                if (lst[i] == lst[i+2] == lst[i+4]) or (lst[i] == lst[i+3] == lst[i+6]):
-                    flag = 1
-                    break
-            
-            elif i == 3:
-                if (lst[i] == lst[i+1] == lst[i+2]):
-                    flag = 1
-                    break
-                
-        elif lst[i] == 'O':
-                if i == 0:
-                    if (lst[i] == lst[i+1] == lst[i+2]) or (lst[i] == lst[i+3] == lst[i+6]) or(lst[i] == lst[i+4] == lst[i+8]):
-                        flag = 2
-                        break
-                    
-                elif i == 1:
-                    if (lst[i] == lst[i+3] == lst[i+6]) :
-                        flag = 2
-                        break
-                
-                elif i == 2:
-                    if (lst[i] == lst[i+2] == lst[i+4]) or (lst[i] == lst[i+3] == lst[i+6]):
-                        flag = 2
-                        break
-                    
-                elif i == 3:
-                    if (lst[i] == lst[i+1] == lst[i+2]):
-                        flag = 2
-                        break
-            
-    if lst[6] == 'X':
-        if lst[6] == lst[7] == lst[8] :
-            flag = 1
-            
-    elif lst[6] == 'O':
-        if x_cnt == o_cnt:
-            if lst[6] == lst[7] == lst[8]:
-                flag = 1
-                
-    if (flag == 2 and x_cnt == o_cnt) or (flag == 1 and x_cnt > o_cnt):
-        # print(flag)
-        return ('valid')
-    
+l1 = list(map(str,input()))
+def who_win(graph):
+  win = [False,False]
+  #가로
+  for i in range(3):
+    if graph[(i*3)+0] == graph[(i*3)+1] == graph[(i*3)+2]:
+      if graph[(i*3)+0] == 'X':
+        win[0] = True
+      elif graph[(i*3)+0] == 'O':
+        win[1] = True
+  #세로
+  for i in range(3):
+    if graph[i] == graph[i +3] == graph[i + 6]:
+      if graph[i] == 'X':
+        win[0] = True
+      elif graph[i] == 'O':
+        win[1] = True
+  #대각선
+  if graph[0] == graph[4] == graph[8]:
+    if graph[0] == 'X':
+      win[0] = True
+    elif graph[0] == 'O':
+      win[1] = True
+  if graph[2] == graph[4] == graph[6]:
+    if graph[2] == 'X':
+      win[0] = True
+    elif graph[2] == 'O':
+      win[1] = True
+  return win
+while l1[0] !='e':
+  x = l1.count('X')
+  o = l1.count('O')
+  flag = True
+  for k in l1:
+    if k == '.':
+      flag = False
+      break
     else:
-        return ('invalid')
-    
-
-while True:
-    lst = list(input())
-    
-    #end 종료
-    if len(lst) == 3:
-        # print('invalid')
-        break
-    
-    x_cnt = lst.count('X')
-    o_cnt = lst.count('O')
-    
-    # case 1. x가 5개 O가 4개 있을 경우
-    if x_cnt == 5 and o_cnt == 4:
-        # print("1", lst)
-        print("valid")
-        continue
-    
-    elif x_cnt < o_cnt or x_cnt - o_cnt > 1:
-        # print("2", lst)
-        print("invalid")
-        continue
-    
-    else:
-        # print("3", lst)
-        print(Tic_Tac_Toe(x_cnt, o_cnt,lst))
-    
+      continue
+  #경우 나눈다
+  # . 이있으면 누군가는 이긴거여야함
+  res = who_win(l1)
+  valid = False
+  if not flag:
+    #둘다이기면 안됨
+    if res[0] == res[1] == True:
+      valid = False
+    elif res[0] == True:
+      if x-o ==1:
+        valid = True
+    elif res[1] == True:
+      if x == o:
+        valid = True
+  # .이없으면
+  else:
+    if x-o == 1:
+      if res[0] == True and res[1] == False:
+        valid = True
+      elif res[0]==False and res[1] == False:
+        valid = True
+  if valid:
+    print("valid")
+  else:
+    print("invalid")
+  l1 = list(map(str,input()))
