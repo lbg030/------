@@ -1,65 +1,67 @@
-l1 = list(map(str,input()))
-def who_win(graph):
-  win = [False,False]
-  #가로
-  for i in range(3):
-    if graph[(i*3)+0] == graph[(i*3)+1] == graph[(i*3)+2]:
-      if graph[(i*3)+0] == 'X':
-        win[0] = True
-      elif graph[(i*3)+0] == 'O':
-        win[1] = True
-  #세로
-  for i in range(3):
-    if graph[i] == graph[i +3] == graph[i + 6]:
-      if graph[i] == 'X':
-        win[0] = True
-      elif graph[i] == 'O':
-        win[1] = True
-  #대각선
-  if graph[0] == graph[4] == graph[8]:
-    if graph[0] == 'X':
-      win[0] = True
-    elif graph[0] == 'O':
-      win[1] = True
-  if graph[2] == graph[4] == graph[6]:
-    if graph[2] == 'X':
-      win[0] = True
-    elif graph[2] == 'O':
-      win[1] = True
-  return win
-while l1[0] !='e':
-  x = l1.count('X')
-  o = l1.count('O')
-  flag = True
-  for k in l1:
-    if k == '.':
-      flag = False
-      break
-    else:
-      continue
-  #경우 나눈다
-  # . 이있으면 누군가는 이긴거여야함
-  res = who_win(l1)
-  valid = False
-  if not flag:
-    #둘다이기면 안됨
-    if res[0] == res[1] == True:
-      valid = False
-    elif res[0] == True:
-      if x-o ==1:
-        valid = True
-    elif res[1] == True:
-      if x == o:
-        valid = True
-  # .이없으면
-  else:
-    if x-o == 1:
-      if res[0] == True and res[1] == False:
-        valid = True
-      elif res[0]==False and res[1] == False:
-        valid = True
-  if valid:
-    print("valid")
-  else:
-    print("invalid")
-  l1 = list(map(str,input()))
+def check(lst):
+	xflag,oflag = False, False
+	
+	for i in range(3):
+		if lst[(i*3)+0] == lst[(i*3)+1] == lst[(i*3)+2]:
+			if lst[(i*3)+0] == 'X':
+				xflag = True
+			elif lst[(i*3)+0] == 'O':
+				oflag = True
+	
+	for i in range(3):
+		if lst[i] == lst[i +3] == lst[i + 6]:
+			if lst[i] == 'X':
+				xflag = True
+			elif lst[i] == 'O':
+				oflag = True
+
+	if lst[0] == lst[4] == lst[8]:
+		if lst[0] == 'X':
+			xflag = True
+		elif lst[0] == 'O':
+			oflag = True
+	if lst[2] == lst[4] == lst[6]:
+		if lst[2] == 'X':
+			xflag = True
+		elif lst[2] == 'O':
+			oflag = True
+	
+	return xflag,oflag
+
+while True:
+	lst = list(input())
+	xcnt = lst.count('X')
+	ocnt = lst.count('O')
+	
+	result = False
+	fullflag = (True if lst.count(".") == 0 else False)
+	if len(lst) == 3:
+		break
+	
+	else:
+		xflag, oflag = check(lst)
+		
+		# 어떠한 경우에도 둘다 트루면 결과는 거짓
+		if xflag == True and oflag == True:
+			result = False
+   
+		#.이 없는 경우
+		elif fullflag:
+			if xcnt - ocnt == 1:
+				if oflag == False:
+					result = True
+
+		#.이 존재
+		else:
+			if (xflag == True) and (xcnt - ocnt == 1):
+				result = True
+
+			elif (oflag == True) and (xcnt - ocnt == 0):
+				result = True
+	
+	
+	if result:
+		print("valid")
+	
+	else:
+		print('invalid')
