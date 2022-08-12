@@ -1,12 +1,24 @@
+import sys
+input = sys.stdin.readline
+
 n = int(input())
-target = int(input())
+k = int(input())
 
-graph = []
+start, end = 0, k
+# k번째 수는 k보다 클 수 없음
 
-for i in range(1,n+1):
-    for j in range(1,n+1):
-        graph.append(i*j)
+while start <= end:
+    mid = (start+end) // 2
+    cnt = 0
+
+    for i in range(1,n+1):
+        cnt += min(mid//i, n)  
         
-print(graph)
+    # print("[cnt]:",cnt)   
+    if cnt >= k:
+        answer = mid
+        end = mid - 1
+    else:
+        start = mid + 1
 
-print(sorted(graph)[target-1])
+print(answer)
