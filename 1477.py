@@ -2,6 +2,7 @@
 # 리스트 append 대신 값 자체를 찾는 방식으로 생각
 
 n,m,l = map(int, input().split())
+
 # n이 0일수도 있기 때문에 예외 처리
 if n :
     lst = [0] + list(map(int, input().split())) + [l]
@@ -26,8 +27,9 @@ while start <= end:
             
     if cnt > m:
         start = mid + 1
+        
     else :
         end = mid - 1
         res = mid
-        # print(res)
+        
 print(res)

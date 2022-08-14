@@ -1,65 +1,41 @@
-l1 = list(map(str,input()))
-def who_win(graph):
-  win = [False,False]
-  #가로
-  for i in range(3):
-    if graph[(i*3)+0] == graph[(i*3)+1] == graph[(i*3)+2]:
-      if graph[(i*3)+0] == 'X':
-        win[0] = True
-      elif graph[(i*3)+0] == 'O':
-        win[1] = True
-  #세로
-  for i in range(3):
-    if graph[i] == graph[i +3] == graph[i + 6]:
-      if graph[i] == 'X':
-        win[0] = True
-      elif graph[i] == 'O':
-        win[1] = True
-  #대각선
-  if graph[0] == graph[4] == graph[8]:
-    if graph[0] == 'X':
-      win[0] = True
-    elif graph[0] == 'O':
-      win[1] = True
-  if graph[2] == graph[4] == graph[6]:
-    if graph[2] == 'X':
-      win[0] = True
-    elif graph[2] == 'O':
-      win[1] = True
-  return win
-while l1[0] !='e':
-  x = l1.count('X')
-  o = l1.count('O')
-  flag = True
-  for k in l1:
-    if k == '.':
-      flag = False
-      break
+import sys
+import bisect
+#이분탐색으로 최대한 0을 만들수있는 index들 계산
+n = int(input())
+l1 = list(map(int,sys.stdin.readline().split()))
+l1.sort()
+
+def find_key(data):
+  return data[3]
+
+def find(arr, target):
+  a = 0
+  b = len(arr)-1
+  ans1 = arr[a]
+  ans2 = arr[b]
+  while a<b:
+    if abs(target-arr[a]-arr[b])<abs(target-ans1-ans2):
+      ans1 = arr[a]
+      ans2 = arr[b]
+    if arr[a]+arr[b]>target:
+      b = b-1
+    elif arr[a]+arr[b]<target:
+      a = a+1
     else:
+      return (arr[a],arr[b])
+    if a == b:
       continue
-  #경우 나눈다
-  # . 이있으면 누군가는 이긴거여야함
-  res = who_win(l1)
-  valid = False
-  if not flag:
-    #둘다이기면 안됨
-    if res[0] == res[1] == True:
-      valid = False
-    elif res[0] == True:
-      if x-o ==1:
-        valid = True
-    elif res[1] == True:
-      if x == o:
-        valid = True
-  # .이없으면
-  else:
-    if x-o == 1:
-      if res[0] == True and res[1] == False:
-        valid = True
-      elif res[0]==False and res[1] == False:
-        valid = True
-  if valid:
-    print("valid")
-  else:
-    print("invalid")
-  l1 = list(map(str,input()))
+  return (ans1,ans2)
+
+res = []
+for k in l1:
+  #이제 두개의 합이 (-k)가 되도록 투포인터로 탐색을하는거임
+  c,d = find(l1,(-k))
+  if k == c or k == d or c==d:
+    continue
+  res.append((k,c,d,abs(k+c+d)))
+res = sorted(res,key=find_key)
+answer = list(res[0])
+del answer[-1]
+answer.sort()
+print(answer[0], answer[1], answer[2])

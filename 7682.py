@@ -59,7 +59,6 @@ while True:
 			elif (oflag == True) and (xcnt - ocnt == 0):
 				result = True
 	
-	
 	if result:
 		print("valid")
 	
