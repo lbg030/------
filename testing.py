@@ -1,6 +1,12 @@
-a = '0b1110' # 14
-b = 0b11110 
+def not_binary(n):
+    n = bin(n)
+    k = ''
+    for i in range(2, len(n)):
+        if n[i] == '1' :
+            k += '0'
+        else :
+            k += '1'
+    print(k)
+    return int(k,2)
 
-a = bin(a)
-
-print(a)
+print(not_binary(20))
