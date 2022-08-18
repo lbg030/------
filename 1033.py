@@ -1,23 +1,35 @@
-# 유클리드 호제법
-def gcd(a, b):
-    while b > 0:
-        a, b = b, a % b
-    return a
-
-# 최소 공배수
-def lcm(a, b):
-    return a * b // gcd(a, b)
+from math import gcd
 
 n = int(input())
-lst = [1] * (n)
-
-cocktail_list = []
+result = [1]*n
 graph = {}
 
-for i in range(n-1):
-    a,b,p,q = map(int, input().split())
+def gcd_list(lst):
+    divided = lst[0]
+    for x in lst:
+        divided = gcd(divided, x)
+    return divided
 
-    divided = gcd(p,q) # 기약분수로 만들기 위해
+def dfs(a, b, edge):
+    global visited
+    
+    # 이미 한 것이라면 pass
+    if (a, edge) in visited: 
+        return
+    
+    # pass가 안됐으면 아직 값 업데이트가 되지 않은 것.
+    visited[(a, edge)] = True
+    result[a] *= edge
+    
+    for x in graph[a]:
+        if x != b: 
+            dfs(x, a, edge)
+
+
+cocktail_list=[]
+
+for _ in range(n-1):
+    a, b, p, q = map(int, input().split())
     
     if a not in graph:
         graph[a] = [b]
@@ -29,44 +41,14 @@ for i in range(n-1):
     else :
         graph[b].append(a)
         
-        
-    if divided != 1:
-        p = p // divided
-        q = q // divided
-        
-    if lst[a] == 1 and lst[b] == 1:
-        # print("LCM",a,b,p,q)
-        prev_a = lst[a]
-        prev_b = lst[b]
-        
-        lst[a] = prev_b * p
-        lst[b] = prev_a * q
-        
-        
-        for x in graph[a]:
-            if x != b:
-                lst[x] *= p
-        
-        for x in graph[b]:
-            if x != a:
-                lst[x] *= q
-    
-    else :
-        lcm_value = lcm(lst[a], lst[b])
-        
-        prev_a = lst[a]
-        lst[a] = lcm_value * p
-        for x in graph[a]:
-            if x != b:
-                lst[x] *= (lst[a] // prev_a)
-        
-        prev_b = lst[b]
-        lst[b] = lcm_value * q
-        for x in graph[b]:
-            if x != a:
-                lst[x] *= (lst[b] // prev_b)
-            
-print(*lst)
-print(graph)
+    cocktail_list.append((a, b, p, q))
 
+for a,b,p,q in cocktail_list:
+    visited={}
+    dfs(a, b, p)
+    dfs(b, a, q)
+    # print(visited)
+divided = gcd_list(result)
+result = list(map(lambda x: x // divided , result))
 
+print(*result)
