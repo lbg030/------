@@ -1,12 +1,23 @@
-def not_binary(n):
-    n = bin(n)
-    k = ''
-    for i in range(2, len(n)):
-        if n[i] == '1' :
-            k += '0'
-        else :
-            k += '1'
-    print(k)
-    return int(k,2)
+r, c = map(int, input().split())
+maps = []
+for _ in range(r):
+    maps.append(list(input()))
+ans = 0
+alphas = set()
+dx = [-1, 1, 0, 0]
+dy = [0, 0, -1, 1]
+alphas.add(maps[0][0])
 
-print(not_binary(20))
+def dfs(x, y, count):
+    global ans
+    ans = max(ans, count)
+    for i in range(4):
+        nx = x + dx[i]
+        ny = y + dy[i]
+        if 0 <= nx < r and 0 <= ny < c and not maps[nx][ny] in alphas:
+            alphas.add(maps[nx][ny])
+            dfs(nx, ny, count+1)
+            alphas.remove(maps[nx][ny])
+
+dfs(0, 0, 1)
+print(ans)
