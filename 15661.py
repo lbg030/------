@@ -1,8 +1,7 @@
 from itertools import combinations
  
 N = int(input())
- 
- 
+
 arr = [list(map(int,input().split())) for _ in range(N)]
 row = [sum(i) for i in arr]
 col = [sum(i) for i in zip(*arr)]
