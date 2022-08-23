@@ -1,27 +1,31 @@
-# A C G T
-from itertools import permutations
-
 n , m =map(int, input().split())
 string = input()
-DNA_List = ['A', 'C','G','T']
 Minimum_DNA_Count_list = list(map(int, input().split()))
-comb_string_list = []
-comb_set = set()
-def check():
-    for i in range(4):
-        if (Minimum_DNA_Count_list[i]) != 0  and string.count(DNA_List[i]) < (Minimum_DNA_Count_list[i]):
-            print(i)
-            print('12')
-            return False
-        else :
-            for k in range((Minimum_DNA_Count_list[i])):
-                comb_string_list.append(DNA_List[i])
-    return True
+DNA_dic = {'A' : Minimum_DNA_Count_list[0],
+           'C' : Minimum_DNA_Count_list[1],
+           'G' : Minimum_DNA_Count_list[2],
+           'T' : Minimum_DNA_Count_list[3]}
 
-if not check():
-    print("0")
+check_list = ['A','C','G','T']
+cnt = 0
+
+for i in range(n-m+1):
+    flag = True
     
-else :
-    needs = sum(Minimum_DNA_Count_list)
-    rest = m - needs
-    lst = set(permutations(comb_string_list, len(comb_string_list)))
+    if i == 0:
+        for j in range(m):
+            DNA_dic[string[j]] -= 1
+    
+    else :
+        DNA_dic[string[i-1]] += 1
+        DNA_dic[string[i+m-1]] -= 1
+        
+    for key in DNA_dic.keys():
+        if DNA_dic[key] > 0:
+            flag = False
+            break
+        
+    if flag:
+        cnt += 1
+        
+print(cnt)

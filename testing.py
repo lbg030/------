@@ -1,23 +1,26 @@
-r, c = map(int, input().split())
-maps = []
-for _ in range(r):
-    maps.append(list(input()))
-ans = 0
-alphas = set()
-dx = [-1, 1, 0, 0]
-dy = [0, 0, -1, 1]
-alphas.add(maps[0][0])
+S, P = map(int, input().split())
+dna = list(input())
+tmp = list(map(int, input().split()))
+dic = {'A': tmp[0], 'C': tmp[1], 'G': tmp[2], 'T': tmp[3]}
+base = {'A': 0, 'C': 0, 'G': 0, 'T': 0}
 
-def dfs(x, y, count):
-    global ans
-    ans = max(ans, count)
-    for i in range(4):
-        nx = x + dx[i]
-        ny = y + dy[i]
-        if 0 <= nx < r and 0 <= ny < c and not maps[nx][ny] in alphas:
-            alphas.add(maps[nx][ny])
-            dfs(nx, ny, count+1)
-            alphas.remove(maps[nx][ny])
+count = 0
+for i in range(S-P+1):
+    flag = True
 
-dfs(0, 0, 1)
-print(ans)
+    if i == 0:
+        for j in range(P):
+            base[dna[j]] += 1
+    else:
+        base[dna[i+P-1]] += 1
+        base[dna[i-1]] -= 1
+
+    for i in ('A', 'C', 'G', 'T'):
+        if base[i] < dic[i]:
+            flag = False
+            break
+
+    if flag:
+        count += 1
+
+print(count)
