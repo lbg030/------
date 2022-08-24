@@ -1,10 +1,15 @@
-import sys
-input=sys.stdin.readline
+n,m,s = map(int, input().split())
+graph = [list(input()) for _ in range(n)]
+target = input()
 
-N=int(input())
-K=int('0b'+input()[:-1],2)
-Total=0
-while K:
-    K=K-(K&((~K)+1))
-    Total+=1
-print(Total)
+def left_or_right(lst, alpha, y):
+    ans = ''
+    value = lst.index(alpha) - y 
+    if value < 0 :
+        ans += 'L' * abs(value)
+    
+    else :
+        ans += 'R' * abs(value)
+    
+    ans += 'P'
+    return ans
