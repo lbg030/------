@@ -1,5 +1,4 @@
-3 3 4
-aaa
-aaa
-aac
-aaa
+2 4 3
+maxi
+imax
+mai
