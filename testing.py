@@ -1,3 +1,4 @@
-a,b = map(float, input().split())
+lr = 1e5
+lr2 = 1e-5
 
-print(a**2)
+print(lr,1* lr2)
