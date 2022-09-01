@@ -1,11 +1,18 @@
-import numpy as np
-
-lst = np.array([[1,1],[1,0]])
 
 n = int(input())
-tlst = lst
+
+lst = [[1,1],[1,0]]
+tlst = [[1,1],[1,0]]
+
 for _ in range(n):
-    tlst = tlst @ lst
-    tlst = tlst % 1000000007
-print(tlst[-1][-1])
-# print(tlst)
+    tlst[0][0] = tlst[0][0] * lst[0][0] + tlst[0][1] * lst[1][0]
+    tlst[0][1] = tlst[0][0] * lst[0][1] + tlst[0][1] * lst[1][1]
+    tlst[1][0] = tlst[1][0] * lst[0][0] + tlst[1][1] * lst[1][0]
+    tlst[1][1] = tlst[1][0] * lst[0][1] + tlst[1][1] * lst[1][1]
+    
+    # print(n)
+    print(tlst)
+    lst = tlst[:]
+
+# print(tlst[-1][-1])
+    
