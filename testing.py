@@ -1,2 +1,1 @@
-import torchvision.datasets as datasets
-
+print( 5 % 2)

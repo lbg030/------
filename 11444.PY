@@ -1,11 +1,11 @@
-from collections import deque
-n = int(input())
-fibonacci = deque([0,1])
+import numpy as np
 
-for _ in range(2,n+1):
-    number = fibonacci[-2] + fibonacci[-1]
-    if number > 1000000007:
-        number = number % 1000000007
-    fibonacci.append( number)
-    fibonacci.popleft()
-print(fibonacci[-1])
+lst = np.array([[1,1],[1,0]])
+
+n = int(input())
+tlst = lst
+for _ in range(n):
+    tlst = tlst @ lst
+    tlst = tlst % 1000000007
+print(tlst[-1][-1])
+# print(tlst)
