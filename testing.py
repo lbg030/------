@@ -1,4 +1,2 @@
-lr = 1e5
-lr2 = 1e-5
+import torchvision.datasets as datasets
 
-print(lr,1* lr2)
