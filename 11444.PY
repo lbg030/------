@@ -12,5 +12,5 @@ for _ in range(n-1):
     
     tlst = [[a,b],[c,d]]
 
-print(tlst[-1][-1] % 1000000007)
-    
+print(tlst)
+# print(tlst[-1][-1] % 1000000007)
