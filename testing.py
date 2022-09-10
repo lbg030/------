@@ -34,4 +34,4 @@ def convert_row(row):
         f.close()
     except:
         pass
-([convert_row(row) for row in data[1:100]])
+([convert_row(row) for row in data[:500]])
