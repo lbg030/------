@@ -1,3 +1,5 @@
+import heapq
+
 n, m = map(int, input().split())
 k = int(input())                 # 시작할 노드
 INF = float('INF')
@@ -11,7 +13,7 @@ for _ in range(m):
   graph[u].append((v, w))             # 거리 정보와 도착노드를 같이 입력합니다.
 
 
-import heapq
+
 
 def dijkstra(start):
   q = []
