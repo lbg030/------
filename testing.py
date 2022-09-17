@@ -1,1 +1,1 @@
-print(testing)
+print((9 * 0.6))

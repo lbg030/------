@@ -1,23 +1,15 @@
-from collections import deque
-n,m,s = map(int, input().split())
+import json
+annot_file_path = '1.json'
 
-graph = [list(input()) for _ in range(n)]
-target = input()
-alpha_dic = {}
+with open(annot_file_path, 'r') as f:
+		data = json.load(f)
+# print(data)
+member = data['shapes'][0]
+print(member)
+label = [member['label']]
+grid = member['points']
 
-res = ''
-cnt = 0
-
-for x in target:
-    for i in range(n):
-        for j in range(m):
-            if graph[i][j] == x:
-                if x in alpha_dic:
-                    alpha_dic[x].append([i, j])
-                else :
-                    alpha_dic[x] = deque()
-                    alpha_dic[x].append([i, j])
-                    
-x,y = alpha_dic['c'].popleft()
-
-print(x,y,type(x))
+print(label, grid[0])
+ 
+ # 폴더 구조
+#  classification = data['classificationdata -> train[hz, bz 폴더 밑 데이터], '] // OD [data -> train[img,label]] 6 2 2
