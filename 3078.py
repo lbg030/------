@@ -1,3 +1,26 @@
-lst = [0, 103, 88, 91, 99, 101, 86, 96, 100, 71, 91, 96, 91, 98, 102, 96, 85, 102, 97, 91, 112, 85, 79, 86, 91, 97, 98, 110, 80, 88, 80, 95, 83, 93, 109, 88, 91, 103, 90, 95, 113, 81, 86, 97, 93, 93]
-n = int(input())
-print(lst[n])
+n, m = map(int, input().split())
+
+lst = [len(input()) for _ in range(n)]
+dic = {}
+cnt = 0
+end = m
+
+for i in range(m):
+    if lst[i] in dic :
+        dic[lst[i]] += 1 
+    else :
+        dic[lst[i]] = 1
+
+# print(dic)
+    
+for i in range(len(lst)):
+    dic[lst[i]] -= 1
+    if i+ m < len(lst):
+        if lst[i+m] in dic:
+            dic[lst[i+m]] += 1
+        else :
+            dic[lst[i+m]] = 1
+     
+    cnt += dic[lst[i]]
+    # print(dic,lst[i])
+print(cnt)
