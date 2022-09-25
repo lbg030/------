@@ -10,7 +10,6 @@ divided = 1000000007
 
 lst = deque([1,2,7])
 
-# lst[3] = 22
 if n >= 3:
     for _ in range(3, n+1):
         lst.append((lst[2] * 3 + lst[1] - lst[0])  % divided)
