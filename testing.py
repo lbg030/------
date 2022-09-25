@@ -1,9 +1,9 @@
-dic = {}
-lst = [1,2,3,4]
-for i in range(len(lst)):
-    if lst[i] in dic :
-        dic[lst[i]] += 1 
-    else :
-        dic[lst[i]] = 1
+import sys
+input=sys.stdin.readline
+from collections import defaultdict
 
-print(dic)
+N,K=map(int,input().split())
+array=[len(input()) for _ in range(N)]
+dic=defaultdict(list)
+for i in range(N):
+    dic[array[i]].append(i)
