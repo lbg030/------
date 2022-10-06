@@ -1,11 +1,7 @@
-import sys
-input=sys.stdin.readline
-from collections import defaultdict
+def solution(numbers):
+    numbers = list(map(str, numbers))
+    numbers.sort(key=lambda x: x*3, reverse=True)
+    print(numbers)
+    return str(int(''.join(numbers)))
 
-N,K=map(int,input().split())
-array=[len(input()) for _ in range(N)]
-dic=defaultdict(list)
-for i in range(N):
-    dic[array[i]].append(i)
-print(array)
-print(dic[4])
+print(solution([3, 30, 34, 5, 9, 90, 91]))
