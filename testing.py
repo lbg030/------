@@ -1,18 +1,18 @@
-# 에라토스 테네스의 체
 n = int(input())
-check = [False] * 2 + [True] * (n-1)
-primes = []
-def isprime(n):
-    for i in range(2, n+1):
-        if check[i]:
-            primes.append(i)
+t = []
+for i in range(n):
+    t.append(list(map(int, input().split())))
+
+print(t)
+
+for i in range(1,n):
+    for j in range(i+1):
+        if j == 0:
+            t[i][j] += t[i-1][j]
+        
+        elif i == j :
+            t[i][j] += t[i-1][j-1]
+        else:
+            t[i][j] += max(t[i - 1][j - 1], t[i - 1][j])
             
-            for j in range(2*i, n+1, i):
-                check[j] = False
-
-    
-
-isprime(n)
-print(primes)
-
-print(check)
+print(t)
