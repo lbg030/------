@@ -1,7 +1,18 @@
-def solution(numbers):
-    numbers = list(map(str, numbers))
-    numbers.sort(key=lambda x: x*3, reverse=True)
-    print(numbers)
-    return str(int(''.join(numbers)))
+# 에라토스 테네스의 체
+n = int(input())
+check = [False] * 2 + [True] * (n-1)
+primes = []
+def isprime(n):
+    for i in range(2, n+1):
+        if check[i]:
+            primes.append(i)
+            
+            for j in range(2*i, n+1, i):
+                check[j] = False
 
-print(solution([3, 30, 34, 5, 9, 90, 91]))
+    
+
+isprime(n)
+print(primes)
+
+print(check)
