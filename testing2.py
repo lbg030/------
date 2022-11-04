@@ -1,8 +1,20 @@
-lst = [4, 1, 9, 5, 4, 9, 2, 1, 4, 2, 5, 9, 8, 7, 2, 1, 6, 9, 7, 3, 6, 5, 8, 0,
-        2, 2, 4, 9, 0, 5, 5, 4, 2, 3, 1, 0, 3, 0, 4, 4, 9, 1, 3, 3, 0, 2, 1, 1,
-        0, 4, 1, 9, 4, 8, 1, 1, 1, 5, 9, 8, 1, 6, 7, 2, 9, 9, 7, 8, 8, 1, 9, 7,
-        8, 9, 1, 6, 6, 3, 3, 1, 3, 0, 8, 8, 3, 6, 6, 7, 1, 0, 7, 6, 4, 8, 2, 0,
-        6, 6, 8, 6, 3, 1, 1, 8, 6, 7, 0, 5, 4, 3, 2, 1, 7, 8, 2, 0, 1, 7, 4, 8,
-        7, 6, 6, 7, 0, 6, 4, 9]
+import ast
 
-print(len(lst))
+dot1 = ast.literal_eval(input())
+dot2 = ast.literal_eval(input())
+dot3 = ast.literal_eval(input())
+dot4 = ast.literal_eval(input())
+
+lst = [dot1,dot2,dot3,dot4]
+print(lst)
+lst = sorted(lst, key = lambda x : x[1])
+
+print(lst)
+
+x = sum(lst[i][0] for i in range(4)) / 4
+y = sum(lst[i][1] for i in range(4)) / 4
+
+x = lst[-1][0] - lst[0][0]
+y = lst[-1][1] - lst[0][1]
+
+gradient = y/x
