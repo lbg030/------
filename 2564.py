@@ -1,13 +1,29 @@
-# 1은 블록의 북쪽, 2는 블록의 남쪽, 3은 블록의 서쪽, 4는 블록의 동쪽
-# 둘째 수는 상점이 블록의 북쪽 또는 남쪽에 위치한 경우 블록의 왼쪽 경계로부터의 거리를 나타내고, 
-# 상점이 블록의 동쪽 또는 서쪽에 위치한 경우 블록의 위쪽 경계로부터의 거리를 나타낸다
+x,y = map(int,input().split())
+lst = []
+n = int(input())
+for _ in range(n+1):
+    position, value = map(int,input().split())
+    if position == 1:
+        lst.append(y+value)
+    elif position == 2:
+        lst.append(-value)
+    elif position == 3:
+        lst.append(y-value)
+    else:
+        lst.append(-x-y+value)
 
-n,m = map(int, input().split())
+total = 2*x+2*y
+res = 0
 
-
-k = int(input())
-
-block = [[0] * n for _ in range(m)]
-
-for _ in range(k):
-    x,y = map(int, input().split())
+for i in range(n):
+    val = lst[n] - lst[i] # 동근이 위치 - 상점 위치
+    
+    if val<0:
+        val *= -1
+        
+    # 최소 단위 더해주기
+    if total - val > val:
+        res += val
+    else:
+        res += (total-val)
+print(res)
