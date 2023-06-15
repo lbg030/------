@@ -1,22 +1,5 @@
 from sys import stdin
 
-def dfs(initial, connected_list, visited):
-    
-    for i in range(n):
-        if not visited[initial]:
-            visited[initial] = True
-            if graph[initial][i] == connected_list[0] : # 처음과 연결되었다면
-                return connected_list
-            
-            else :
-                connected_list.append(i)
-                # print(connected_list, i)
-                dfs(i, connected_list, visited)
-                
-        #이미 팀이 구성된 얘들
-        else :
-            break
-
 #Init
 num_test = int(input())
 
@@ -39,13 +22,20 @@ for _ in range(num_test):
             continue 
         else :
             temp_visited = visited[:]
-            connected_list = dfs(i , [i], temp_visited)
+            connected_list, flag = dfs(i, [], temp_visited)
+            print(connected_list, flag)
             
-            if connected_list:
+            if connected_list and flag:
                 for num in connected_list:
                     visited[num] = True
                 print(f"Connected_list = {connected_list}")
                 results.append(connected_list)
                 cnt += 1
-
+            
+            else :
+                visited[connected_list[0]] = True
+            
+            # else :
+            #     print(connected_list)
+    print(visited)
     exit() # 한번만 해보게
